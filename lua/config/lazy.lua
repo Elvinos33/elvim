@@ -16,6 +16,9 @@ local plugins = {
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'neovim/nvim-lspconfig',
+  {
+    "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...
+  }
 }
 
 local opts = {}
