@@ -12,5 +12,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local plugins = {
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'neovim/nvim-lspconfig',
+}
+
+local opts = {}
+
 -- load plugins
-require("lazy").setup("plugins")
+require("lazy").setup(plugins, opts)
