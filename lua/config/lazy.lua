@@ -19,9 +19,15 @@ local plugins = {
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  'rafamadriz/friendly-snippets',
+  'nvim-treesitter/nvim-treesitter',
+  'ellisonleao/gruvbox.nvim',
   {
-    "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...
-  }
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.0',
+    dependencies = { {'nvim-lua/plenary.nvim'} },
+  },
 }
 
 local opts = {}
