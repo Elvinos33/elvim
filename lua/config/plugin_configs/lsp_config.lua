@@ -7,6 +7,8 @@ require("mason-lspconfig").setup({
     'pyright',
     'tailwindcss',
     'volar',
+    'svelte',
+    'tsserver',
   }
 })
 
@@ -39,5 +41,13 @@ require("lspconfig").tailwindcss.setup({
 })
 
 require("lspconfig").volar.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").svelte.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").tsserver.setup({
    capabilities = capabilities,
 })
