@@ -24,6 +24,8 @@ local plugins = {
    'nvim-treesitter/nvim-treesitter',
    'ThePrimeagen/harpoon',
    'ellisonleao/gruvbox.nvim',
+   'leafOfTree/vim-svelte-plugin',
+   'image.nvim',
    {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }

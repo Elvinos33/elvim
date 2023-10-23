@@ -14,5 +14,6 @@
   "nvim-treesitter": { "branch": "master", "commit": "168972a0d53170767e49d44f678ca721a2472560" },
   "nvim-web-devicons": { "branch": "master", "commit": "3af745113ea537f58c4b1573b64a429fefad9e07" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
-  "telescope.nvim": { "branch": "master", "commit": "b79cd6c88b3d96b0f49cb7d240807cd59b610cd8" }
+  "telescope.nvim": { "branch": "master", "commit": "b79cd6c88b3d96b0f49cb7d240807cd59b610cd8" },
+  "vim-svelte-plugin": { "branch": "master", "commit": "612b34640919c29b5cf2d85289dbc762b099858a" }
 }
