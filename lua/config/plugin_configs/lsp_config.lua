@@ -9,6 +9,7 @@ require("mason-lspconfig").setup({
     'volar',
     'svelte',
     'tsserver',
+    'gopls',
   }
 })
 
@@ -49,5 +50,9 @@ require("lspconfig").svelte.setup({
 })
 
 require("lspconfig").tsserver.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").gopls.setup({
    capabilities = capabilities,
 })
