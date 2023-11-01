@@ -27,6 +27,7 @@ local plugins = {
    'leafOfTree/vim-svelte-plugin',
    'image.nvim',
    'andweeb/presence.nvim',
+   'mbbill/undotree',
    {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
