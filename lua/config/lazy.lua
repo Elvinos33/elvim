@@ -22,10 +22,8 @@ local plugins = {
    'saadparwaiz1/cmp_luasnip',
    'rafamadriz/friendly-snippets',
    'nvim-treesitter/nvim-treesitter',
-   'ThePrimeagen/harpoon',
    'ellisonleao/gruvbox.nvim',
    'leafOfTree/vim-svelte-plugin',
-   'image.nvim',
    'andweeb/presence.nvim',
    'mbbill/undotree',
    {
