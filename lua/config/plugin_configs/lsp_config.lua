@@ -11,6 +11,7 @@ require("mason-lspconfig").setup({
     'tsserver',
     'gopls',
     'astro',
+    'emmet_ls',
   }
 })
 
@@ -59,5 +60,9 @@ require("lspconfig").gopls.setup({
 })
 
 require("lspconfig").astro.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").emmet_ls.setup({
    capabilities = capabilities,
 })
