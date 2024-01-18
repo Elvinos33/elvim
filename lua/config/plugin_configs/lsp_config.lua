@@ -10,6 +10,7 @@ require("mason-lspconfig").setup({
     'svelte',
     'tsserver',
     'gopls',
+    'astro',
   }
 })
 
@@ -54,5 +55,9 @@ require("lspconfig").tsserver.setup({
 })
 
 require("lspconfig").gopls.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").astro.setup({
    capabilities = capabilities,
 })
