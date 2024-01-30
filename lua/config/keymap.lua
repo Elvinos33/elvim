@@ -11,3 +11,8 @@ vim.keymap.set('n', '<leader>fb', telescopeBuiltin.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescopeBuiltin.help_tags, {})
 
 ------------------------------------------------------------------
+
+--Netrw Bindings
+------------------------------------------------------------------
+vim.keymap.set('n', '<leader>ew', ':Ex<CR>', {})
+------------------------------------------------------------------
