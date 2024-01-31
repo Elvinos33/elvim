@@ -16,3 +16,9 @@ vim.keymap.set('n', '<leader>fh', telescopeBuiltin.help_tags, {})
 ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>ew', ':Ex<CR>', {})
 ------------------------------------------------------------------
+
+--LSP Bindings
+------------------------------------------------------------------
+vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, { desc = 'Go to definition' })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
+------------------------------------------------------------------
