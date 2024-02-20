@@ -25,7 +25,7 @@ local plugins = {
    'ellisonleao/gruvbox.nvim',
    'leafOfTree/vim-svelte-plugin',
    'andweeb/presence.nvim',
-   'mbbill/undotree',
+   'github/copilot.vim',
    'sbdchd/neoformat',
    {
       'nvim-lualine/lualine.nvim',

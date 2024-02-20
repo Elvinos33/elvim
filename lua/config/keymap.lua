@@ -22,3 +22,10 @@ vim.keymap.set('n', '<leader>ew', ':Ex<CR>', {})
 vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, { desc = 'Go to definition' })
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
 ------------------------------------------------------------------
+
+--Copilot Bindings
+------------------------------------------------------------------
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+------------------------------------------------------------------
+
