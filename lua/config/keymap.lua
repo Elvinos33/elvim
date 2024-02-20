@@ -26,6 +26,6 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' 
 --Copilot Bindings
 ------------------------------------------------------------------
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-Tab>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<C-K>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 ------------------------------------------------------------------
 
