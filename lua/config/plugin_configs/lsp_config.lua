@@ -12,6 +12,8 @@ require("mason-lspconfig").setup({
     'gopls',
     'astro',
     'emmet_ls',
+    'nimls',
+    'eslint'
   }
 })
 
@@ -64,5 +66,13 @@ require("lspconfig").astro.setup({
 })
 
 require("lspconfig").emmet_ls.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").nimls.setup({
+   capabilities = capabilities,
+})
+
+require("lspconfig").eslint.setup({
    capabilities = capabilities,
 })

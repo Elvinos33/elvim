@@ -23,7 +23,6 @@ local plugins = {
    'rafamadriz/friendly-snippets',
    'nvim-treesitter/nvim-treesitter',
    'ellisonleao/gruvbox.nvim',
-   'leafOfTree/vim-svelte-plugin',
    'andweeb/presence.nvim',
    'github/copilot.vim',
    'sbdchd/neoformat',
