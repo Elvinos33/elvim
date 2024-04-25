@@ -12,6 +12,11 @@ vim.keymap.set('n', '<leader>fh', telescopeBuiltin.help_tags, {})
 
 ------------------------------------------------------------------
 
+--Oil Bindings
+------------------------------------------------------------------
+vim.keymap.set('n', '<leader>o', function() require('oil').open() end, { desc = 'Toggle Oil' })
+------------------------------------------------------------------
+
 --LSP Bindings
 ------------------------------------------------------------------
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to definition' })
