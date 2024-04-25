@@ -27,6 +27,12 @@ local plugins = {
    'github/copilot.vim',
    'sbdchd/neoformat',
    {
+      'stevearc/oil.nvim',
+      opts = {},
+      -- Optional dependencies
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+   },
+   {
       'nvim-lualine/lualine.nvim',
       dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
    },

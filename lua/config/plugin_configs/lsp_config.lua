@@ -13,7 +13,8 @@ require("mason-lspconfig").setup({
     'astro',
     'emmet_ls',
     'nimls',
-    'eslint'
+    'eslint',
+    'terraformls'
   }
 })
 
@@ -76,3 +77,8 @@ require("lspconfig").nimls.setup({
 require("lspconfig").eslint.setup({
    capabilities = capabilities,
 })
+
+require("lspconfig").terraformls.setup({
+   capabilities = capabilities,
+})
+
