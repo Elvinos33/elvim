@@ -14,7 +14,7 @@ vim.keymap.set('n', '<leader>fh', telescopeBuiltin.help_tags, {})
 
 --Oil Bindings
 ------------------------------------------------------------------
-vim.keymap.set('n', '<leader>o', function() require('oil').open() end, { desc = 'Toggle Oil' })
+vim.keymap.set('n', '<leader>o', ":Oil<CR>", { desc = 'Toggle Oil' })
 ------------------------------------------------------------------
 
 --LSP Bindings
