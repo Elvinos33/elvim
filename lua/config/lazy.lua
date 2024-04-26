@@ -26,6 +26,7 @@ local plugins = {
    'andweeb/presence.nvim',
    'github/copilot.vim',
    'sbdchd/neoformat',
+   'tpope/vim-fugitive',
    {
       'stevearc/oil.nvim',
       opts = {},
