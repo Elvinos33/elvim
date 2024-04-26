@@ -1,14 +1,13 @@
 vim.g.mapleader = " "
 
 
---Telescope Bindings
+--Fzf.lua Bindings
 ------------------------------------------------------------------
-local telescopeBuiltin = require('telescope.builtin')
+local fzfLua = require('fzf-lua')
 
-vim.keymap.set('n', '<leader>ff', telescopeBuiltin.find_files, {})
-vim.keymap.set('n', '<leader>fg', telescopeBuiltin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', telescopeBuiltin.buffers, {})
-vim.keymap.set('n', '<leader>fh', telescopeBuiltin.help_tags, {})
+vim.keymap.set('n', '<leader>ff', fzfLua.files, {})
+vim.keymap.set('n', '<leader>fg', fzfLua.live_grep, {})
+vim.keymap.set('n', '<leader>fb', fzfLua.buffers, {})
 
 ------------------------------------------------------------------
 

@@ -37,9 +37,9 @@ local plugins = {
       dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
    },
    {
-      'nvim-telescope/telescope.nvim',
-      tag = '0.1.4',
-      dependencies = { {'nvim-lua/plenary.nvim'} },
+      "ibhagwan/fzf-lua",
+      -- optional for icon support
+      dependencies = { "nvim-tree/nvim-web-devicons" },
    },
 }
 
