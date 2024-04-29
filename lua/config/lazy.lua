@@ -27,7 +27,6 @@ local plugins = {
    'github/copilot.vim',
    'sbdchd/neoformat',
    'tpope/vim-fugitive',
-   'christoomey/vim-tmux-navigator',
    {
       'stevearc/oil.nvim',
       opts = {},
