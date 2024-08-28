@@ -13,9 +13,30 @@ vim.keymap.set('n', '<leader>fb', fzfLua.buffers, {})
 
 --Neogit Bindings
 ------------------------------------------------------------------
-vim.keymap.set('n', '<leader>g', ":Neogit<CR>", { desc = 'Open Neogit'})
+
+local function git_commit_and_push()
+    -- Add all changes to the staging area
+    vim.cmd('!git add .')
+
+    -- Prompt the user for a commit message
+    local message = vim.fn.input('Commit message: ')
+
+    -- Commit with the provided message
+    vim.cmd('!git commit -m "' .. message .. '"')
+
+    -- Push the commit
+    vim.cmd('!git push')
+end
+
+-- Create a key mapping for the function
+vim.keymap.set('n', '<leader>gp', git_commit_and_push, { noremap = true, silent = true })
+
+
+--vim.keymap.set('n', '<leader>g', ":Neogit<CR>", { desc = 'Open Neogit'})
 vim.keymap.set('n', '<leader>gc', ":Neogit<CR>:call feedkeys('Scc')<CR>", { desc = 'Open Neogit and Stage all commit and open commit popup'})
 vim.keymap.set('n', '<leader>gcf', ":wq<CR>:call feedkeys('Pp')<CR>", { desc = 'Save commitmessage and push to branch'})
+
+
 ------------------------------------------------------------------
 
 --Oil Bindings
