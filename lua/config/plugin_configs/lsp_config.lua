@@ -12,7 +12,6 @@ require("mason-lspconfig").setup({
     'gopls',
     'astro',
     'emmet_ls',
-    'nimls',
     'eslint',
     'terraformls'
   }

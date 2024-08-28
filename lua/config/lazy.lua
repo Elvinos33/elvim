@@ -26,7 +26,6 @@ local plugins = {
    'andweeb/presence.nvim',
    'github/copilot.vim',
    'sbdchd/neoformat',
-   'tpope/vim-fugitive',
    {
       'stevearc/oil.nvim',
       opts = {},
@@ -42,6 +41,17 @@ local plugins = {
       -- optional for icon support
       dependencies = { "nvim-tree/nvim-web-devicons" },
    },
+   {
+      "NeogitOrg/neogit",
+      dependencies = {
+        "nvim-lua/plenary.nvim",         -- required
+        "sindrets/diffview.nvim",        -- optional - Diff integration
+
+        "ibhagwan/fzf-lua",              -- optional
+      },
+      config = true
+    }
+
 }
 
 local opts = {}
