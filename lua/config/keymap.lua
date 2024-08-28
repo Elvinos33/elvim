@@ -11,6 +11,12 @@ vim.keymap.set('n', '<leader>fb', fzfLua.buffers, {})
 
 ------------------------------------------------------------------
 
+--Neogit Bindings
+------------------------------------------------------------------
+vim.keymap.set('n', '<leader>g', ":Neogit<CR>")
+vim.keymap.set('n', '<leader>gc', ":Neogit commit<CR>")
+------------------------------------------------------------------
+
 --Oil Bindings
 ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>o', ":Oil<CR>", { desc = 'Toggle Oil' })
