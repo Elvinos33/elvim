@@ -14,6 +14,7 @@ vim.keymap.set('n', '<leader>fb', fzfLua.buffers, {})
 --Neogit Bindings
 ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>g', ":Neogit<CR>", { desc = 'Open Neogit'})
+vim.keymap.set('n', '<leader>g', ":Neogit<CR>:call feedkeys('Scc')<CR>", { desc = 'Open Neogit'})
 vim.keymap.set('n', '<leader>gc', ":Neogit commit<CR>", { desc = 'Open Neogit-commit' })
 ------------------------------------------------------------------
 
