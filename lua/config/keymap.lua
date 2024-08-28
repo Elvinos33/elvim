@@ -13,8 +13,8 @@ vim.keymap.set('n', '<leader>fb', fzfLua.buffers, {})
 
 --Neogit Bindings
 ------------------------------------------------------------------
-vim.keymap.set('n', '<leader>g', ":Neogit<CR>")
-vim.keymap.set('n', '<leader>gc', ":Neogit commit<CR>")
+vim.keymap.set('n', '<leader>g', ":Neogit<CR>", { desc = 'Open Neogit'})
+vim.keymap.set('n', '<leader>gc', ":Neogit commit<CR>", { desc = 'Open Neogit-commit' })
 ------------------------------------------------------------------
 
 --Oil Bindings
