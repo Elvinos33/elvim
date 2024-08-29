@@ -11,26 +11,6 @@ vim.keymap.set('n', '<leader>fb', fzfLua.buffers, {})
 
 ------------------------------------------------------------------
 
---Neogit & Git Bindings
-------------------------------------------------------------------
-
-local function git_commit_and_push()
-    vim.cmd('!git add .')
-
-    local message = vim.fn.input('Commit message: ')
-
-    vim.cmd('!git commit -m "' .. message .. '"')
-
-    vim.cmd('!git push')
-end
-
-vim.keymap.set('n', '<leader>gp', git_commit_and_push, { noremap = true, silent = true })
-
-vim.keymap.set('n', '<leader>pg', ":Neogit<CR>", { desc = 'Open Neogit'})
-
-
-------------------------------------------------------------------
-
 --Oil Bindings
 ------------------------------------------------------------------
 vim.keymap.set('n', '<leader>o', ":Oil<CR>", { desc = 'Toggle Oil' })
