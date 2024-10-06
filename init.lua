@@ -1,4 +1,3 @@
-require("config.lazy")
-require("config.plugin_configs.init")
-require("config.options")
-require("config.keymap")
+require("core.options")
+require("core.lazy")
+require("core.keymap")

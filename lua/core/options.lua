@@ -9,3 +9,8 @@ vim.opt.softtabstop = 2
 
 -- Number of spaces to insert a <Tab>
 vim.opt.expandtab = true
+
+-- Leader
+vim.g.mapleader = " "
+
+vim.o.background = "dark"
