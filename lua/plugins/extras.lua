@@ -65,5 +65,8 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
+    config = function()
+      vim.api.nvim_set_hl(0, 'FlashLabel', { foreground = '#D4BE98', background = '#282828' })
+    end
   },
 }
