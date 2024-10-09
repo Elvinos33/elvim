@@ -48,16 +48,19 @@ return {
       "LazyGit"
     },
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
     },
   },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = {}
+    dependencies = {
+      "MunifTanjim/nui.nvim"
+    },
+    opts = {},
   },
   {
-    'echasnovski/mini.ai',
+    "echasnovski/mini.ai",
     version = '*',
     opts = {}
   },
