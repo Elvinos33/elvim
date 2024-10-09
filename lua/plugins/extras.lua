@@ -66,7 +66,7 @@ return {
     event = "VeryLazy",
     opts = {},
     config = function()
-      vim.api.nvim_set_hl(0, 'FlashLabel', { foreground = '#D4BE98', background = '#282828' })
+      vim.api.nvim_set_hl(0, 'FlashLabel', { foreground = '#282828', background = '#D4BE98' })
     end
   },
 }
