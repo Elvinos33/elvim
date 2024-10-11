@@ -13,7 +13,8 @@ return {
       astro = { "prettier" },
       tsx = { "prettier" },
       jsx = { "prettier" },
-      vue = { "prettier" }
+      vue = { "prettier" },
+      html = { "prettier" },
     },
     format_on_save = {
       timeout_ms = 500,
