@@ -1,5 +1,5 @@
-# nvim-config
-My Neovim Config
+# elvim
+My Neovim Config called elvim (see what i did there? :D)
 
 ### Installation
 On Linux & MacOS
