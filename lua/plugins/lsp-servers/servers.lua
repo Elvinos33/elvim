@@ -1,20 +1,39 @@
+-- plugins/lsp-servers/servers.lua
 return {
   terraformls = {
-    cmd = { "terraform-ls" },
-    arg = { "server" },
-    filetypes = { "terraform", "tf", "terraform-vars" },
+    cmd = { "terraform-ls", "serve" },
+    filetypes = { "terraform", "tf", "hcl", "terraform-vars" },
   },
   lua_ls = {
-    Lua = {
-      diagnostics = { globals = { 'vim' } }
-    }
+    settings = {
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+          telemetry = { enable = false },
+          library = {
+            "${3rd}/love2d/library",
+          },
+        },
+        diagnostics = { globals = { 'vim' } },
+      },
+    },
+
+  },
+  eslint = {
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll"
+      })
+    end
   },
   bashls = {
-    filetypes = { "sh", "zsh" },
+    filetypes = { "sh", "bash", "zsh" },
   },
   vimls = {
     filetypes = { "vim" },
   },
+  sourcekit = {},
   vtsls = {},
   gopls = {},
   pyright = {},

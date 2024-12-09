@@ -1,3 +1,15 @@
+-- Base Bindings
+------------------------------------------------------------------
+-- Yank & Paste
+vim.keymap.set("n", "<leader>YY", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
+vim.keymap.set("n", '<leader>y', '"+y', { desc = "Yank to clipboard", noremap = true })
+vim.keymap.set("n", "<leader>p", '"0p', { desc = "Paste last yanked item under line", noremap = true })
+vim.keymap.set("n", "<leader>P", '"0P', { desc = "Paste last yanked item above line", noremap = true })
+
+-- Insert
+vim.keymap.set("n", "<leader>i", "i<Space><ESC>i", { desc = "Enter insert mode with space in front", noremap = true })
+------------------------------------------------------------------
+
 -- Fzf.lua Bindings
 ------------------------------------------------------------------
 local fzfLua = require("fzf-lua")
@@ -6,7 +18,6 @@ vim.keymap.set("n", "<leader>ff", fzfLua.files, {})
 vim.keymap.set("n", "<leader>fg", fzfLua.live_grep_native, {})
 vim.keymap.set("n", "<leader>fb", fzfLua.buffers, {})
 vim.keymap.set("n", "<leader>fc", fzfLua.git_commits, {})
-
 ------------------------------------------------------------------
 
 -- Oil Bindings
