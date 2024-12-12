@@ -11,9 +11,6 @@ return {
   config = function()
     -- Setup Mason
     require("mason").setup({
-      registries = {
-        "file:~/repos/mason-registry"
-      },
       ui = {
         border = "rounded",
         icons = {
