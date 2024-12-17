@@ -33,7 +33,6 @@ return {
   vimls = {
     filetypes = { "vim" },
   },
-  sourcekit = {},
   vtsls = {},
   gopls = {},
   pyright = {},
