@@ -1,3 +1,8 @@
+-- Unmapping;:
+------------------------------------------------------------------
+vim.api.nvim_set_keymap('n', 'q:', '<Nop>', { noremap = true, silent = true })
+------------------------------------------------------------------
+
 -- Base Bindings
 ------------------------------------------------------------------
 -- Yank & Paste
@@ -18,6 +23,8 @@ vim.keymap.set("n", "<leader>ff", fzfLua.files, {})
 vim.keymap.set("n", "<leader>fg", fzfLua.live_grep_native, {})
 vim.keymap.set("n", "<leader>fb", fzfLua.buffers, {})
 vim.keymap.set("n", "<leader>fc", fzfLua.git_commits, {})
+vim.keymap.set("n", "<leader>fm", fzfLua.marks, {})
+-- vim.keymap.set("n", "<leader>fh", fzfLua.history, {})
 ------------------------------------------------------------------
 
 -- Oil Bindings

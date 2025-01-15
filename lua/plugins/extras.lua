@@ -56,7 +56,7 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
-      "MunifTanjim/nui.nvim"
+      "MunifTanjim/nui.nvim",
     },
     opts = {},
   },
@@ -73,4 +73,9 @@ return {
       vim.api.nvim_set_hl(0, 'FlashLabel', { foreground = '#282828', background = '#D4BE98' })
     end
   },
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    opts = {}
+  }
 }

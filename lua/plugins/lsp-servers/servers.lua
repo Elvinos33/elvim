@@ -27,6 +27,14 @@ return {
       })
     end
   },
+  -- biome = {
+  --   on_attach = function(client, bufnr)
+  --     vim.api.nvim_create_autocmd("BufWritePre", {
+  --       buffer = bufnr,
+  --       command = "biome"
+  --     })
+  --   end
+  -- },
   bashls = {
     filetypes = { "sh", "bash", "zsh" },
   },
