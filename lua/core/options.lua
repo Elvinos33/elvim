@@ -2,6 +2,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Persistent Undo
+vim.opt.undofile = true
+
 -- Width of Tabs
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2

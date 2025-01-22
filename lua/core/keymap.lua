@@ -1,4 +1,4 @@
--- Unmapping;:
+-- Unmapping
 ------------------------------------------------------------------
 vim.api.nvim_set_keymap('n', 'q:', '<Nop>', { noremap = true, silent = true })
 ------------------------------------------------------------------
@@ -69,4 +69,14 @@ vim.keymap.set({ "n" }, "S", flash.treesitter)
 vim.keymap.set({ "o" }, "r", flash.remote)
 vim.keymap.set({ "o" }, "R", flash.treesitter_search)
 vim.keymap.set({ "c" }, "<C-s>", flash.treesitter_search)
+------------------------------------------------------------------
+
+-- Harpoon Bindings
+------------------------------------------------------------------
+local harpoon = require("harpoon")
+
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 ------------------------------------------------------------------

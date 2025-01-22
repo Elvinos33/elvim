@@ -74,8 +74,15 @@ return {
     end
   },
   {
-    "chentoast/marks.nvim",
-    event = "VeryLazy",
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
-  }
+  },
+  {
+    "karb94/neoscroll.nvim",
+    opts = {
+      duration_multiplier = 0.5,
+    },
+  },
 }
