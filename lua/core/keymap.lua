@@ -80,3 +80,12 @@ harpoon:setup()
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 ------------------------------------------------------------------
+
+-- AI Stuff
+------------------------------------------------------------------
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+vim.keymap.set({ "n", "x" }, "<leader>gl", '<CMD>CodeCompanion<CR>', { desc = "Open Codecompanion" })
+vim.keymap.set("n", "<leader>gh", '<CMD>CodeCompanionChat<CR>', { desc = "Open Codecompanion" })
+------------------------------------------------------------------

@@ -53,6 +53,10 @@ return {
     },
   },
   {
+    "echasnovski/mini.diff",
+    opts = {}
+  },
+  {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
