@@ -43,7 +43,15 @@ return {
   },
   vtsls = {},
   gopls = {},
-  pyright = {},
+  pyright = {
+    settings = {
+      python = {
+        analysis = {
+          typeCheckingMode = "off",
+        },
+      },
+    },
+  },
   astro = {},
   svelte = {},
   emmet_ls = {},

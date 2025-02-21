@@ -1,32 +1,7 @@
 return {
   {
-    "ibhagwan/fzf-lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    opts = {},
-  },
-  {
-    "stevearc/dressing.nvim",
-    opts = {
-      input = {
-        enabled = true,
-      }
-    },
-  },
-  {
-    "j-hui/fidget.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
     "kylechui/nvim-surround",
     event = "VeryLazy",
-    opts = {},
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
     opts = {},
   },
   {
@@ -43,16 +18,6 @@ return {
     opts = {},
   },
   {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-      "LazyGit"
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-  {
     "echasnovski/mini.diff",
     opts = {}
   },
@@ -67,7 +32,18 @@ return {
   {
     "echasnovski/mini.ai",
     version = '*',
-    opts = {}
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    opts = function()
+      local miniai = require('mini.ai')
+      return {
+        n_lines = 500,
+        custom_textobjects = {
+          F = miniai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+        },
+      }
+    end
   },
   {
     "folke/flash.nvim",
@@ -82,11 +58,5 @@ return {
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
-  },
-  {
-    "karb94/neoscroll.nvim",
-    opts = {
-      duration_multiplier = 0.5,
-    },
   },
 }

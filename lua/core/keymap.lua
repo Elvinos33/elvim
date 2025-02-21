@@ -17,13 +17,13 @@ vim.keymap.set("n", "<leader>i", "i<Space><ESC>i", { desc = "Enter insert mode w
 
 -- Fzf.lua Bindings
 ------------------------------------------------------------------
-local fzfLua = require("fzf-lua")
-
-vim.keymap.set("n", "<leader>ff", fzfLua.files, {})
-vim.keymap.set("n", "<leader>fg", fzfLua.live_grep_native, {})
-vim.keymap.set("n", "<leader>fb", fzfLua.buffers, {})
-vim.keymap.set("n", "<leader>fc", fzfLua.git_commits, {})
-vim.keymap.set("n", "<leader>fm", fzfLua.marks, {})
+-- local fzfLua = require("snacks.nvim")
+--
+-- vim.keymap.set("n", "<leader>ff", fzfLua.files, {})
+-- vim.keymap.set("n", "<leader>fg", fzfLua.live_grep_native, {})
+-- vim.keymap.set("n", "<leader>fb", fzfLua.buffers, {})
+-- vim.keymap.set("n", "<leader>fc", fzfLua.git_commits, {})
+-- vim.keymap.set("n", "<leader>fm", fzfLua.marks, {})
 -- vim.keymap.set("n", "<leader>fh", fzfLua.history, {})
 ------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ vim.keymap.set("n", "gE", vim.diagnostic.open_float, { desc = "Show diagnostic m
 
 -- LazyGit
 ------------------------------------------------------------------
-vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open LazyGit" })
+-- vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open LazyGit" })
 ------------------------------------------------------------------
 
 -- Remove highligts
@@ -86,6 +86,6 @@ vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:lis
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
-vim.keymap.set({ "n", "x" }, "<leader>gl", '<CMD>CodeCompanion<CR>', { desc = "Open Codecompanion" })
-vim.keymap.set("n", "<leader>gh", '<CMD>CodeCompanionChat<CR>', { desc = "Open Codecompanion" })
+vim.keymap.set({ "n", "x" }, "<leader>gl", "<CMD>'<,'>CodeCompanion<CR>", { desc = "Open Codecompanion" })
+vim.keymap.set("n", "<leader>gh", "<CMD>CodeCompanionChat<CR>", { desc = "Open Codecompanion" })
 ------------------------------------------------------------------
