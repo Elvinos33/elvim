@@ -6,6 +6,7 @@ vim.api.nvim_set_keymap('n', 'q:', '<Nop>', { noremap = true, silent = true })
 -- Base Bindings
 ------------------------------------------------------------------
 -- Yank & Paste
+vim.opt.clipboard:prepend("unnamedplus")
 vim.keymap.set("n", "<leader>YY", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
 vim.keymap.set("n", '<leader>y', '"+y', { desc = "Yank to clipboard", noremap = true })
 vim.keymap.set("n", "<leader>p", '"0p', { desc = "Paste last yanked item under line", noremap = true })
