@@ -17,7 +17,6 @@ return {
         diagnostics = { globals = { 'vim' } },
       },
     },
-
   },
   eslint = {
     on_attach = function(client, bufnr)
@@ -27,16 +26,8 @@ return {
       })
     end
   },
-  -- biome = {
-  --   on_attach = function(client, bufnr)
-  --     vim.api.nvim_create_autocmd("BufWritePre", {
-  --       buffer = bufnr,
-  --       command = "biome"
-  --     })
-  --   end
-  -- },
   bashls = {
-    filetypes = { "sh", "bash", "zsh" },
+    filetypes = { "sh", "bash", "zsh", "envrc" },
   },
   vimls = {
     filetypes = { "vim" },

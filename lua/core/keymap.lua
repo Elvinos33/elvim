@@ -15,18 +15,6 @@ vim.keymap.set("n", "<leader>P", '"0P', { desc = "Paste last yanked item above l
 vim.keymap.set("n", "<leader>i", "i<Space><ESC>i", { desc = "Enter insert mode with space in front", noremap = true })
 ------------------------------------------------------------------
 
--- Fzf.lua Bindings
-------------------------------------------------------------------
--- local fzfLua = require("snacks.nvim")
---
--- vim.keymap.set("n", "<leader>ff", fzfLua.files, {})
--- vim.keymap.set("n", "<leader>fg", fzfLua.live_grep_native, {})
--- vim.keymap.set("n", "<leader>fb", fzfLua.buffers, {})
--- vim.keymap.set("n", "<leader>fc", fzfLua.git_commits, {})
--- vim.keymap.set("n", "<leader>fm", fzfLua.marks, {})
--- vim.keymap.set("n", "<leader>fh", fzfLua.history, {})
-------------------------------------------------------------------
-
 -- Oil Bindings
 ------------------------------------------------------------------
 local oil = require("oil")
@@ -48,11 +36,6 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 ------------------------------------------------------------------
 vim.keymap.set("n", "ge", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message (Error message)" })
 vim.keymap.set("n", "gE", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
-------------------------------------------------------------------
-
--- LazyGit
-------------------------------------------------------------------
--- vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open LazyGit" })
 ------------------------------------------------------------------
 
 -- Remove highligts

@@ -6,11 +6,14 @@ return {
     { "williamboman/mason.nvim",          config = true }, -- For installing and managing LSPs
     { "williamboman/mason-lspconfig.nvim" },               -- To use Mason with native LSP
     { "hrsh7th/cmp-nvim-lsp" },                            -- For LSP completion
-    { "j-hui/fidget.nvim" },                               -- For LSP status updates
   },
   config = function()
     -- Setup Mason
     require("mason").setup({
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Elvinos33/mason-registry",
+      },
       ui = {
         border = "rounded",
         icons = {
@@ -36,5 +39,10 @@ return {
         require("lspconfig")[server].setup(server_opts)
       end
     })
+
+    for server, config in pairs(require("plugins.lsp-servers.custom")) do
+      require("lspconfig.configs")[server] = config
+      require("lspconfig")[server].setup(config)
+    end
   end
 }
