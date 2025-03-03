@@ -28,10 +28,13 @@ return {
             "biome.json",
           }),
         },
+        stylua = {
+          prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+        },
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "isort", "black" },
+        python = { "isort", "autopep8" },
         rust = { "rustfmt" },
         javascript = { "prettier", "biome" },
         typescript = { "prettier", "biome" },

@@ -6,8 +6,7 @@ vim.api.nvim_set_keymap('n', 'q:', '<Nop>', { noremap = true, silent = true })
 -- Base Bindings
 ------------------------------------------------------------------
 -- Yank & Paste
-vim.keymap.set("n", "<leader>YY", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
-vim.keymap.set("n", '<leader>y', '"+y', { desc = "Yank to clipboard", noremap = true })
+vim.keymap.set("n", "<leader>yy", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
 vim.keymap.set("n", "<leader>p", '"0p', { desc = "Paste last yanked item under line", noremap = true })
 vim.keymap.set("n", "<leader>P", '"0P', { desc = "Paste last yanked item above line", noremap = true })
 
@@ -87,5 +86,8 @@ vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 vim.keymap.set({ "n", "x" }, "<leader>gl", "<CMD>'<,'>CodeCompanion<CR>", { desc = "Open Codecompanion" })
-vim.keymap.set("n", "<leader>gh", "<CMD>CodeCompanionChat<CR>", { desc = "Open Codecompanion" })
+vim.keymap.set({ "n" }, "<leader>gt", "<CMD>CodeCompanionChat Toggle<CR>", { desc = "Toogle Codecompanion" })
+vim.keymap.set("n", "<leader>ga", "<CMD>CodeCompanionActions<CR>", { desc = "Open Codecompanion Actions" })
+vim.keymap.set("n", "L", ":!fd -t f | pbcopy<CR>", { desc = "Copy folder structure" })
+
 ------------------------------------------------------------------

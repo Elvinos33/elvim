@@ -14,18 +14,17 @@ return {
             "${3rd}/love2d/library",
           },
         },
-        diagnostics = { globals = { 'vim' } },
+        diagnostics = { globals = { "vim" } },
       },
     },
-
   },
   eslint = {
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
-        command = "EslintFixAll"
+        command = "EslintFixAll",
       })
-    end
+    end,
   },
   -- biome = {
   --   on_attach = function(client, bufnr)
@@ -43,11 +42,25 @@ return {
   },
   vtsls = {},
   gopls = {},
-  pyright = {
+  pylsp = {
     settings = {
-      python = {
-        analysis = {
-          typeCheckingMode = "off",
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            enabled = false,
+            maxLineLength = 130,
+            --ignore = { "E501" },
+          },
+          mccabe = { enabled = false },
+          pyflakes = { enabled = false },
+          pylint = { enabled = false },
+          flake8 = { enabled = false },
+          autopep8 = { enabled = false },
+          yapf = { enabled = false },
+          isort = { enabled = false },
+          jedi = { enabled = false },
+          mypy = { enabled = false },
+          pyls_isort = { enabled = false },
         },
       },
     },
