@@ -31,6 +31,9 @@ return {
         stylua = {
           prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
         },
+        autopep8 = {
+          prepend_args = { "--max-line-length", "130", "--aggressive" },
+        },
       },
       formatters_by_ft = {
         lua = { "stylua" },

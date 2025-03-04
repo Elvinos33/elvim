@@ -47,9 +47,9 @@ return {
       pylsp = {
         plugins = {
           pycodestyle = {
-            enabled = false,
+            enabled = true,
             maxLineLength = 130,
-            --ignore = { "E501" },
+            -- ignore = { "E501" },
           },
           mccabe = { enabled = false },
           pyflakes = { enabled = false },
