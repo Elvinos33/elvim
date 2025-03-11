@@ -37,7 +37,7 @@ return {
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "isort", "autopep8" },
+        python = { "ruff_format" },
         rust = { "rustfmt" },
         javascript = { "prettier", "biome" },
         typescript = { "prettier", "biome" },

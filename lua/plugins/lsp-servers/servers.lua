@@ -26,14 +26,14 @@ return {
       })
     end,
   },
-  -- biome = {
-  --   on_attach = function(client, bufnr)
-  --     vim.api.nvim_create_autocmd("BufWritePre", {
-  --       buffer = bufnr,
-  --       command = "biome"
-  --     })
-  --   end
-  -- },
+  biome = {
+    on_attach = function(bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "biome",
+      })
+    end,
+  },
   bashls = {
     filetypes = { "sh", "bash", "zsh" },
   },
@@ -42,26 +42,26 @@ return {
   },
   vtsls = {},
   gopls = {},
-  pylsp = {
+  --  Pyright for LSP features (Go to Definition, Hover, etc.)
+  pyright = {
     settings = {
-      pylsp = {
-        plugins = {
-          pycodestyle = {
-            enabled = true,
-            maxLineLength = 130,
-            -- ignore = { "E501" },
-          },
-          mccabe = { enabled = false },
-          pyflakes = { enabled = false },
-          pylint = { enabled = false },
-          flake8 = { enabled = false },
-          autopep8 = { enabled = false },
-          yapf = { enabled = false },
-          isort = { enabled = false },
-          jedi = { enabled = false },
-          mypy = { enabled = false },
-          pyls_isort = { enabled = false },
+      pyright = {
+        disableOrganizeImports = true, --  Ruff handles import organization
+      },
+      python = {
+        analysis = {
+          -- ignore = { "*" }, --  Ignore all files for analysis (Ruff handles linting)
         },
+      },
+    },
+  },
+  --  Ruff LSP for linting, formatting, and import sorting
+  ruff = {
+    init_options = {
+      settings = {
+        lineLength = 130, -- Set max line length
+        logLevel = "debug", --  Enable Ruff logging
+        logFile = "~/.local/state/nvim/ruff-lsp.log", --  Log Ruff output
       },
     },
   },

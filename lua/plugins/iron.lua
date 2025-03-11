@@ -17,17 +17,19 @@ return {
             command = { "zsh" },
           },
           python = {
-            --command = { "python3" },
             command = function()
-              -- Check if pyproject.toml exists in the root directory
+              -- Get the current working directory
               local root_dir = vim.fn.getcwd()
-              local pyproject_path = root_dir .. "/pyproject.toml"
-
-              if vim.fn.filereadable(pyproject_path) == 1 then
-                -- Use 'poetry run ipython' if pyproject.toml exists
+              local poetry_lock = root_dir .. "/poetry.lock"
+              local uv_lock = root_dir .. "/uv.lock"
+              if vim.fn.filereadable(poetry_lock) == 1 then
+                -- Use Poetry environment
                 return { "poetry", "run", "ipython", "--no-autoindent", "--colors=Linux" }
+              elseif vim.fn.filereadable(uv_lock) == 1 then
+                -- Use uv environment
+                return { "uv", "run", "ipython", "--no-autoindent", "--colors=Linux" }
               else
-                -- Use direct ipython command otherwise
+                -- Fallback to system ipython
                 return { "ipython", "--no-autoindent", "--colors=Linux" }
               end
             end,

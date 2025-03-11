@@ -1,8 +1,7 @@
 # %%
 import math
-
 import matplotlib.pyplot as plt
-%matplotlib inline
+
 # Harmonic Series Introduction
 
 # Harmonic Series Introduction
@@ -52,8 +51,7 @@ def plot_all():
     x_values = range(1, 10001, 1000)
 
     # Prepare data for plots
-    y_values_diff = [approximate_harmonic_difference(
-        x, math.e) for x in x_values]
+    y_values_diff = [approximate_harmonic_difference(x, math.e) for x in x_values]
     y_values_series = [harmonic_series(x) for x in x_values]
 
     # Create subplots
@@ -64,8 +62,7 @@ def plot_all():
     axs[0].axhline(
         y=0.57721, color="r", linestyle="--", label="Euler-Mascheroni constant (γ)"
     )
-    axs[0].set_title(
-        "Difference between Harmonic Series and Natural Logarithm")
+    axs[0].set_title("Difference between Harmonic Series and Natural Logarithm")
     axs[0].set_xlabel("n")
     axs[0].set_ylabel("H(n) - ln(n)")
     axs[0].legend()
@@ -81,7 +78,7 @@ def plot_all():
     # Adjust space between plots
     plt.tight_layout()
 
-# %%
+    # %%
     plt.show()
 
 
