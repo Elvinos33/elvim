@@ -30,6 +30,7 @@ return {
   keys = {
     { "<leader>ff", function() Snacks.picker.files() end },
     { "<leader>fg", function() Snacks.picker.grep() end },
+    { "<leader>fb", function() Snacks.picker.buffers() end },
     { "<leader>gg", function() Snacks.lazygit() end },
     { "<leader>go", function() Snacks.gitbrowse() end },
     { "<leader>gb", function() Snacks.git.blame_line() end },
