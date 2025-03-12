@@ -29,7 +29,7 @@ return {
   },
   keys = {
     { "<leader>ff", function() Snacks.picker.files() end },
-    { "<leader>fs", function() Snacks.picker.smart() end},
+    { "<leader>space", function() Snacks.picker.smart() end},
     { "<leader>fg", function() Snacks.picker.grep() end },
     { "<leader>fb", function() Snacks.picker.buffers() end },
     { "<leader>gg", function() Snacks.lazygit() end },
