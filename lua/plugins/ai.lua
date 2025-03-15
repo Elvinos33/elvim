@@ -15,8 +15,11 @@ return {
         }
       },
       strategies = {
+        inline = {
+          provider = "openai"
+        },
         chat = {
-          adapter = "copilot"
+          adapter = "openai"
         },
       }
     }

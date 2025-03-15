@@ -41,6 +41,7 @@ return {
         jsx = { "prettier", "biome" },
         vue = { "prettier", "biome" },
         html = { "prettier", "biome" },
+        sql = { "sleek" }
       },
       format_on_save = {
         timeout_ms = 500,
