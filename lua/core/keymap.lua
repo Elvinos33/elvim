@@ -1,6 +1,6 @@
 -- Unmapping
 ------------------------------------------------------------------
-vim.api.nvim_set_keymap('n', 'q:', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "q:", "<Nop>", { noremap = true, silent = true })
 ------------------------------------------------------------------
 
 -- Base Bindings
@@ -76,8 +76,12 @@ local harpoon = require("harpoon")
 
 harpoon:setup()
 
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<leader>a", function()
+  harpoon:list():add()
+end)
+vim.keymap.set("n", "<C-e>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
 ------------------------------------------------------------------
 
 -- AI Stuff
@@ -85,8 +89,14 @@ vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:lis
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
-vim.keymap.set({ "n", "x" }, "<leader>gl", "<CMD>'<,'>CodeCompanion<CR>", { desc = "Open Codecompanion" })
-vim.keymap.set({ "n" }, "<leader>gt", "<CMD>CodeCompanionChat Toggle<CR>", { desc = "Toogle Codecompanion" })
+vim.keymap.set("x", "<leader>gl", ":<C-u>'<,'>CodeCompanion<CR>", { desc = "Inline fix code" })
+vim.keymap.set("n", "<leader>gl", "gv:<C-u>'<,'>CodeCompanion<CR>", { desc = "Inline fix code" })
+
+vim.keymap.set({ "x" }, "<leader>gd", ":<C-u>'<,'>CodeCompanionChat Add<CR>", { desc = "Add to Chat" })
+vim.keymap.set({ "n" }, "<leader>gd", "gv:<C-u>'<,'>CodeCompanionChat Add<CR>", { desc = "Add to Chat" })
+
+vim.keymap.set({ "n" }, "<leader>gt", "<CMD>CodeCompanionChat Toggle<CR>", { desc = "Toogle Chat" })
+
 vim.keymap.set("n", "<leader>ga", "<CMD>CodeCompanionActions<CR>", { desc = "Open Codecompanion Actions" })
 vim.keymap.set("n", "L", ":!fd -t f | pbcopy<CR>", { desc = "Copy folder structure" })
 

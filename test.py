@@ -1,5 +1,6 @@
 # %%
 import math
+
 import matplotlib.pyplot as plt
 
 # Harmonic Series Introduction
@@ -55,7 +56,7 @@ def plot_all():
     y_values_series = [harmonic_series(x) for x in x_values]
 
     # Create subplots
-    fig, axs = plt.subplots(2, 1, figsize=(10, 8))
+    _, axs = plt.subplots(2, 1, figsize=(10, 8))
 
     # First plot (H(n) - ln(n))
     axs[0].plot(x_values, y_values_diff, marker="o", label="H(n) - ln(n)")

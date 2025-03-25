@@ -44,26 +44,44 @@ return {
   gopls = {},
   --  Pyright for LSP features (Go to Definition, Hover, etc.)
   pyright = {
+    -- https://github.com/microsoft/pyright/discussions/5852#discussioncomment-6874502
+    -- capabilities = {
+    --   textDocument = {
+    --     publishDiagnostics = {
+    --       tagSupport = {
+    --         valueSet = { 2 },
+    --       },
+    --     },
+    --   },
+    -- },
     settings = {
       pyright = {
-        disableOrganizeImports = true, --  Ruff handles import organization
+        disableOrganizeImports = true,
       },
       python = {
         analysis = {
-          -- ignore = { "*" }, --  Ignore all files for analysis (Ruff handles linting)
+          -- ignore = { "*" },
+          typeCheckingMode = "off",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
         },
       },
     },
   },
-  --  Ruff LSP for linting, formatting, and import sorting
   ruff = {
-    init_options = {
-      settings = {
-        lineLength = 130, -- Set max line length
-        logLevel = "debug", --  Enable Ruff logging
-        logFile = "~/.local/state/nvim/ruff-lsp.log", --  Log Ruff output
-      },
+    settings = {
+      -- logLevel = "info",
+      -- logFile = "~/.local/state/nvim/ruff-lsp.log",
+      -- lint = {
+      --   select = { "E", "F", "B", "I" },
+      -- },
+      -- format = {
+      --   lineLength = 130,
+      -- },
     },
+    on_attach = function(client)
+      client.server_capabilities.hoverProvider = false
+    end,
   },
   astro = {},
   svelte = {},

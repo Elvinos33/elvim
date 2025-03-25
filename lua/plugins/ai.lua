@@ -35,7 +35,10 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "copilot_custom",
+          adapter = "gemini",
+        },
+        inline = {
+          adapter = "gemini",
         },
       },
     },
