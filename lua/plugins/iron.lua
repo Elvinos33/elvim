@@ -17,24 +17,12 @@ return {
             command = { "zsh" },
           },
           python = {
+            -- Get the current working directory
             command = function()
-              -- Get the current working directory
-              local root_dir = vim.fn.getcwd()
-              local poetry_lock = root_dir .. "/poetry.lock"
-              local uv_lock = root_dir .. "/uv.lock"
-              if vim.fn.filereadable(poetry_lock) == 1 then
-                -- Use Poetry environment
-                return { "poetry", "run", "ipython", "--no-autoindent", "--colors=Linux" }
-              elseif vim.fn.filereadable(uv_lock) == 1 then
-                -- Use uv environment
-                return { "uv", "run", "ipython", "--no-autoindent", "--colors=Linux" }
-              else
-                -- Fallback to system ipython
-                return { "ipython", "--no-autoindent", "--colors=Linux" }
-              end
+              return { "ipython", "--no-autoindent", "--colors=Linux" }
             end,
             format = common.bracketed_paste_python,
-            block_deviders = { "# %%", "#%%" },
+            block_dividers = { "# %%", "#%%" },
           },
         },
         -- Set the file type of the newly created repl to ft
