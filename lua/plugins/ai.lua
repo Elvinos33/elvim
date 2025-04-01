@@ -1,6 +1,9 @@
 return {
   {
     "github/copilot.vim",
+    config = function()
+      vim.g.copilot_auth_provider_url = "https://schibsted.ghe.com"
+    end,
   },
   {
     "olimorris/codecompanion.nvim",
@@ -24,6 +27,14 @@ return {
             },
           })
         end,
+        gemini_custom = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            name = "gemini_custom",
+            schema = {
+              model = { default = "gemini-2.5-pro-exp-03-25" },
+            },
+          })
+        end,
         openai_custom = function()
           return require("codecompanion.adapters").extend("copilot", {
             name = "openai_custom",
@@ -35,10 +46,10 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "gemini",
+          adapter = "gemini_custom",
         },
         inline = {
-          adapter = "gemini",
+          adapter = "gemini_custom",
         },
       },
     },
