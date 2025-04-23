@@ -60,8 +60,6 @@ return {
     })
 
     -- Additional keymaps
-    vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
-    vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
   end,
   -- Optional: if you want the plugin to be loaded only for specific file types
   -- ft = {"python", "sh"},
@@ -69,7 +67,7 @@ return {
   keys = {
     { "<space>rr", desc = "Toggle REPL" },
     { "<space>rf", desc = "Focus REPL" },
-    { "<space>rh", desc = "Hide REPL" },
+    -- { "<space>rh", desc = "Hide REPL" },
     -- Add other keymaps as needed
   },
 }

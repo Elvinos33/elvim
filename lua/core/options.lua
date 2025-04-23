@@ -1,6 +1,6 @@
 -- Line Number and Relative Line Number
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Persistent Undo
 vim.opt.undofile = true

@@ -1,8 +1,11 @@
+-- lua/plugins/ai.lua
 return {
   {
     "github/copilot.vim",
     config = function()
       vim.g.copilot_auth_provider_url = "https://schibsted.ghe.com"
+      vim.g.copilot_no_tab_map = true
+      vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
     end,
   },
   {
@@ -11,6 +14,15 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+    config = function(_, opts)
+      require("codecompanion").setup(opts)
+
+      -- Keymaps moved from keymap.lua
+      vim.keymap.set("x", "<leader>gl", ":<C-u>'<,'>CodeCompanion<CR>", { desc = "Inline fix code" })
+      vim.keymap.set({ "x" }, "<leader>ga", ":<C-u>'<,'>CodeCompanionChat Add<CR>", { desc = "Add to Chat" })
+      vim.keymap.set({ "n" }, "<leader>gt", "<CMD>CodeCompanionChat Toggle<CR>", { desc = "Toogle Chat" })
+      vim.keymap.set("n", "<leader>gd", "<CMD>CodeCompanionActions<CR>", { desc = "Open Codecompanion Actions" })
+    end,
     opts = {
       display = {
         diff = {
@@ -18,7 +30,6 @@ return {
         },
       },
       adapters = {
-        -- Define a custom Copilot adapter
         copilot_custom = function()
           return require("codecompanion.adapters").extend("copilot", {
             name = "copilot_custom",
@@ -36,7 +47,7 @@ return {
           })
         end,
         openai_custom = function()
-          return require("codecompanion.adapters").extend("copilot", {
+          return require("codecompanion.adapters").extend("openai", {
             name = "openai_custom",
             schema = {
               model = { default = "o3-mini-2025-01-31" },
@@ -46,10 +57,10 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "gemini_custom",
+          adapter = "openai_custom",
         },
         inline = {
-          adapter = "gemini_custom",
+          adapter = "openai_custom",
         },
       },
     },
