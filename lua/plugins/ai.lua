@@ -57,10 +57,10 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "openai_custom",
+          adapter = "gemini_custom",
         },
         inline = {
-          adapter = "openai_custom",
+          adapter = "gemini_custom",
         },
       },
     },

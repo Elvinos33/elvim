@@ -38,7 +38,18 @@ return {
       lualine_y = {},
       lualine_z = {},
     },
-    tabline = { lualine_c = { { "filename", path = 1 } } },
+    tabline = {
+      lualine_c = {
+        {
+          "filename",
+          path = 1,
+          cond = function()
+            local file = vim.fn.expand("%:t")
+            return file ~= ""
+          end,
+        },
+      },
+    },
     winbar = {},
     inactive_winbar = {},
     extensions = {},

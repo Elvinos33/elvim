@@ -16,12 +16,11 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    version = "*",
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    config = function()
-      require("noice").setup({})
-    end,
+    opts = {},
   },
   {
     "echasnovski/mini.ai",
@@ -63,14 +62,14 @@ return {
         desc = "Harpoon toggle UI",
       },
       {
-        "<C-p>", -- Note: <C-S-P> might not work on all terminals/GUIs. Consider alternative binds.
+        "<C-ø>", -- Note: <C-S-P> might not work on all terminals/GUIs. Consider alternative binds.
         function()
           require("harpoon"):list():prev()
         end,
         desc = "Harpoon previous",
       },
       {
-        "<C-å>", -- Note: <C-S-N> might not work on all terminals/GUIs. Consider alternative binds.
+        "<C-æ>", -- Note: <C-S-N> might not work on all terminals/GUIs. Consider alternative binds.
         function()
           require("harpoon"):list():next()
         end,
