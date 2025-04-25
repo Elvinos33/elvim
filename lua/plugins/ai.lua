@@ -5,6 +5,7 @@ return {
     config = function()
       vim.g.copilot_auth_provider_url = "https://schibsted.ghe.com"
       vim.g.copilot_no_tab_map = true
+      vim.g.copilot_settings = { selectedCompletionModel = "gpt-4o-copilot" }
       vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
     end,
   },
@@ -50,17 +51,17 @@ return {
           return require("codecompanion.adapters").extend("openai", {
             name = "openai_custom",
             schema = {
-              model = { default = "o3-mini-2025-01-31" },
+              model = { default = "o4-mini" },
             },
           })
         end,
       },
       strategies = {
         chat = {
-          adapter = "gemini_custom",
+          adapter = "openai_custom",
         },
         inline = {
-          adapter = "gemini_custom",
+          adapter = "openai_custom",
         },
       },
     },
