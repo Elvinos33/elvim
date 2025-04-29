@@ -36,7 +36,7 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to declaration" }
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
 vim.keymap.set("n", "<C-t>", vim.lsp.buf.type_definition)
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>rn", ":IncRename ")
 ------------------------------------------------------------------
 
 -- Diagnostics
