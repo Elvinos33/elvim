@@ -17,7 +17,7 @@ return {
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
-              api_key = os.getenv("LITELLM_API_KEY"),
+              api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
             },
             schema = {
               model = {
@@ -37,12 +37,44 @@ return {
           adapter = "litellm"
         },
         chat = {
-          adapter = "litellm"
+          adapter = "litellm",
+          roles = {
+            llm = function(adapter)
+              local model_name = ""
+              if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+                local model = adapter.schema.model.default
+                if type(model) == "function" then
+                  model = model(adapter)
+                end
+                model_name = model
+                model_name = string.match(model_name, "/(.*)") or model_name
+              end
+              return " " ..
+                  string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
+            end,
+            user = " User",
+          },
+          keymaps = {
+            send = {
+              callback = function(chat)
+                vim.cmd("stopinsert")
+                chat:submit()
+                chat:add_buf_message({ role = "llm", content = "" })
+              end,
+              index = 1,
+              description = "Send",
+            },
+          },
+
         },
         cmd = {
           adapter = "litellm"
         }
-      }
-    }
+      },
+    },
+    init = function()
+      local spinner = require("plugins.extensions.codecompanion-spinner")
+      spinner:init()
+    end,
   }
 }

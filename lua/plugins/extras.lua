@@ -7,7 +7,9 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {},
+    opts = {
+      disable_filetype = { "codecompanion", "snacks_input" },
+    },
   },
   {
     "utilyre/barbecue.nvim",
@@ -16,6 +18,17 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {},
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+    opts = {
+      debounce = 10,
+      render_modes = true,
+      sign = {
+        enabled = false,
+      },
+    },
   },
   {
     "echasnovski/mini.diff",
