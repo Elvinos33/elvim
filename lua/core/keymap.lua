@@ -10,23 +10,12 @@ vim.keymap.set("n", "<leader>yy", "<CMD>%y+<CR>", { desc = "Yank whole file to c
 vim.keymap.set("n", "<leader>p", '"0p', { desc = "Paste last yanked item under line", noremap = true })
 vim.keymap.set("n", "<leader>P", '"0P', { desc = "Paste last yanked item above line", noremap = true })
 
---- Insert
-vim.keymap.set("n", "<leader>i", "i<Space><ESC>i", { desc = "Enter insert mode with space in front", noremap = true })
-
 --- Escape
 vim.keymap.set("i", "jk", "<ESC>", { desc = "exit insert mode with jk", noremap = true })
 
 --- Remove highligts
--------------------------------------------------------------------
 vim.keymap.set("n", "<leader>rh", "<CMD>noh<CR>", { desc = "Stop highlighting words" })
 
-------------------------------------------------------------------
-
--- Oil Bindings
-------------------------------------------------------------------
-local oil = require("oil")
-
-vim.keymap.set("n", "<leader>o", oil.open, { desc = "Toggle Oil" })
 ------------------------------------------------------------------
 
 -- LSP Bindings
