@@ -98,14 +98,14 @@ return {
         desc = "Harpoon toggle UI",
       },
       {
-        "<C-ø>", -- Note: <C-S-P> might not work on all terminals/GUIs. Consider alternative binds.
+        "<C-ø>",
         function()
           require("harpoon"):list():prev()
         end,
         desc = "Harpoon previous",
       },
       {
-        "<C-æ>", -- Note: <C-S-N> might not work on all terminals/GUIs. Consider alternative binds.
+        "<C-æ>",
         function()
           require("harpoon"):list():next()
         end,
