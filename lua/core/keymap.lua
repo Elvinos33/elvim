@@ -54,5 +54,5 @@ vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true,
 
 vim.keymap.set("v", "<leader>gl", "<CMD>'<,'>CodeCompanion<CR>", { desc = "Open Codecompanion", noremap = true })
 vim.keymap.set("n", "<leader>gl", "<CMD>CodeCompanion<CR>", { desc = "Open Codecompanion", noremap = true })
-vim.keymap.set({ "n", "x" }, "<leader>gh", "<CMD>CodeCompanionChat<CR>", { desc = "Open Codecompanion" })
+vim.keymap.set({ "n", "x" }, "<leader>gh", "<CMD>CodeCompanionChat toggle<CR>", { desc = "Open Codecompanion" })
 ------------------------------------------------------------------

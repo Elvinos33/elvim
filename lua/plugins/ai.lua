@@ -6,72 +6,86 @@ return {
     end
   },
   {
+    "Davidyz/VectorCode",
+    version = "*",
+    build = "uv tool upgrade vectorcode",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "Davidyz/VectorCode"
     },
-    opts = {
-      adapters = {
-        litellm = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
-              api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
-            },
-            schema = {
-              model = {
-                default = "gemini/gemini-2.0-flash"
+    opts = function()
+      return {
+        adapters = {
+          litellm = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
+                api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
+              },
+              schema = {
+                model = {
+                  default = "gemini/gemini-2.0-flash"
+                }
               }
-            }
-          })
-        end
-      },
-      display = {
-        diff = {
-          provider = "mini_diff"
-        }
-      },
-      strategies = {
-        inline = {
-          adapter = "litellm"
+            })
+          end
         },
-        chat = {
-          adapter = "litellm",
-          roles = {
-            llm = function(adapter)
-              local model_name = ""
-              if adapter.schema and adapter.schema.model and adapter.schema.model.default then
-                local model = adapter.schema.model.default
-                if type(model) == "function" then
-                  model = model(adapter)
-                end
-                model_name = model
-                model_name = string.match(model_name, "/(.*)") or model_name
-              end
-              return " " ..
-                  string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
-            end,
-            user = " User",
+        display = {
+          diff = {
+            provider = "mini_diff"
+          }
+        },
+        strategies = {
+          inline = {
+            adapter = "litellm"
           },
-          keymaps = {
-            send = {
-              callback = function(chat)
-                vim.cmd("stopinsert")
-                chat:submit()
-                chat:add_buf_message({ role = "llm", content = "" })
+          chat = {
+            adapter = "litellm",
+            roles = {
+              llm = function(adapter)
+                local model_name = ""
+                if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+                  local model = adapter.schema.model.default
+                  if type(model) == "function" then
+                    model = model(adapter)
+                  end
+                  model_name = model
+                  model_name = string.match(model_name, "/(.*)") or model_name
+                end
+                return " " ..
+                    string.upper(string.sub(model_name, 1, 1)) ..
+                    string.sub(model_name, 2) -- Capitalize the first letter
               end,
-              index = 1,
-              description = "Send",
+              user = " User",
+            },
+            keymaps = {
+              send = {
+                callback = function(chat)
+                  vim.cmd("stopinsert")
+                  chat:submit()
+                  chat:add_buf_message({ role = "llm", content = "" })
+                end,
+                index = 1,
+                description = "Send",
+              },
             },
           },
-
+          cmd = {
+            adapter = "litellm"
+          }
         },
-        cmd = {
-          adapter = "litellm"
+        extensions = {
+          vectorcode = {
+            opts = { add_tool = true, add_slash_command = true, tool_opts = { auto_submit = { ls = true, query = true }, no_duplicate = true, } },
+          },
         }
-      },
-    },
+      }
+    end,
     init = function()
       local spinner = require("plugins.extensions.codecompanion-spinner")
       spinner:init()
