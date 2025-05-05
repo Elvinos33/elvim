@@ -27,6 +27,10 @@ return {
   {
     "smjonas/inc-rename.nvim",
     config = function()
+      -- live-preview for :%s substitutions
+      vim.opt.inccommand = "split"
+      -- bigger command-line window
+      vim.opt.cmdwinheight = 20
       require("inc_rename").setup()
     end,
   },
