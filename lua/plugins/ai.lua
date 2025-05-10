@@ -1,22 +1,29 @@
 return {
   {
-    "github/copilot.vim",
-    config = function()
-      vim.g.copilot_auth_provider_url = "https://schibsted.ghe.com"
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = {
+      auth_provider_url = "https://schibsted.ghe.com",
+      suggestion = {
+        auto_trigger = true
+      }
+    },
+    init = function()
+      local copilot = require("copilot")
+      vim.api.nvim_set_keymap("i", "<C-q>", copilot.accept(), { silent = true, expr = true })
     end
-  },
-  {
-    "Davidyz/VectorCode",
-    version = "*",
-    build = "uv tool upgrade vectorcode",
-    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "Davidyz/VectorCode"
+      {
+        "Davidyz/VectorCode",
+        version = "*",
+        build = "uv tool upgrade vectorcode",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      },
     },
     opts = function()
       return {
@@ -81,7 +88,7 @@ return {
         },
         extensions = {
           vectorcode = {
-            opts = { add_tool = true, add_slash_command = true, tool_opts = { auto_submit = { ls = true, query = true }, no_duplicate = true, } },
+            opts = { add_tool = true, add_slash_command = true, tool_opts = { auto_submit = { ls = false, query = false }, no_duplicate = true, } },
           },
         }
       }
