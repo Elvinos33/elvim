@@ -5,13 +5,12 @@ return {
     opts = {
       auth_provider_url = "https://schibsted.ghe.com",
       suggestion = {
-        auto_trigger = true
+        auto_trigger = true,
+        keymap = {
+          accept = "<C-q>"
+        }
       }
     },
-    init = function()
-      local copilot = require("copilot")
-      vim.api.nvim_set_keymap("i", "<C-q>", copilot.accept(), { silent = true, expr = true })
-    end
   },
   {
     "olimorris/codecompanion.nvim",
