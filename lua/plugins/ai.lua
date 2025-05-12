@@ -17,13 +17,12 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-    },
+      },
     init = function()
+      require("codecompanion").setup(opts)
+        
       local spinner = require("plugins.extensions.codecompanion-spinner")
       spinner:init()
-    end,
-    config = function(_, opts)
-      require("codecompanion").setup(opts)
 
       vim.keymap.set("x", "<leader>gl", ":<C-u>'<,'>CodeCompanion<CR>", {
         desc = "Inline fix code",
@@ -40,12 +39,10 @@ return {
         desc = "Open CodeCompanion Actions",
       })
     end,
-    opts = {
-      display = {
-        diff = { provider = "mini_diff" },
-      },
-      adapters = {
-        copilot_custom = function()
+    opts = function()
+      return {
+        adapters = {
+          copilot_custom = function()
           return require("codecompanion.adapters").extend("copilot", {
             name = "copilot_custom",
             schema = { model = { default = "claude-3.7-sonnet" } },
@@ -63,13 +60,75 @@ return {
             schema = { model = { default = "o4-mini" } },
           })
         end,
-      },
-      strategies = {
-        inline = {
-          provider = "openai"
+          litellm = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
+                api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
+              },
+              schema = {
+                model = {
+                  default = "gemini/gemini-2.0-flash"
+                }
+              }
+            })
+          end
         },
+        display = {
+          diff = {
+            provider = "mini_diff"
+          }
+        },
+        strategies = {
+          inline = {
+            adapter = "litellm"
+          },
+          chat = {
+            adapter = "litellm",
+            roles = {
+              llm = function(adapter)
+                local model_name = ""
+                if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+                  local model = adapter.schema.model.default
+                  if type(model) == "function" then
+                    model = model(adapter)
+                  end
+                  model_name = model
+                  model_name = string.match(model_name, "/(.*)") or model_name
+                end
+                return " " ..
+                    string.upper(string.sub(model_name, 1, 1)) ..
+                    string.sub(model_name, 2) -- Capitalize the first letter
+              end,
+              user = " User",
+            },
+            keymaps = {
+              send = {
+                callback = function(chat)
+                  vim.cmd("stopinsert")
+                  chat:submit()
+                  chat:add_buf_message({ role = "llm", content = "" })
+                end,
+                index = 1,
+                description = "Send",
+              },
+            },
+          },
+          cmd = {
+            adapter = "copilot"
+          }
+        },
+        extensions = {
+          vectorcode = {
+            opts = { add_tool = true, add_slash_command = true, tool_opts = { auto_submit = { ls = false, query = false }, no_duplicate = true, } },
+          },
+        }
+      }
+    end,
+    end,
+  }
         chat = {
-          adapter = "openai_custom",
+          adapter = "copilot",
           keymaps = {
             send = {
               callback = function(chat)
@@ -82,7 +141,7 @@ return {
             },
           },
         },
-        inline = { adapter = "openai_custom" },
+        inline = { adapter = "copilot" },
       },
     },
   },

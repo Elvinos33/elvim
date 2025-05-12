@@ -25,7 +25,20 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = { disable_filetype = { "codecompanion", "snacks_input" } },
+    opts = {
+      disable_filetype = { "codecompanion", "snacks_input" },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+    opts = {
+      debounce = 10,
+      render_modes = true,
+      sign = {
+        enabled = false,
+      },
+    },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -135,16 +148,4 @@ return {
       },
     },
   },
-  {
-    "mistricky/codesnap.nvim",
-    build = "make build_generator",
-    keys = {
-      { "<leader>cc", "<cmd>CodeSnap<cr>",     mode = "x", desc = "Save selected code snapshot into clipboard" },
-      { "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
-    },
-    opts = {
-      save_path = "~/Pictures",
-      bg_theme = "grape",
-    },
-  }
 }
