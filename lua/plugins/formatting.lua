@@ -23,15 +23,18 @@ return {
           }),
         },
         biome = {
-          require_cwd = true,
+          require_cwd = false,
           cwd = require("conform.util").root_file({
             "biome.json",
           }),
         },
+        stylua = {
+          prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+        },
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "isort", "black" },
+        python = { "ruff_format", "ruff_fix", "ruff_organize_imports" },
         rust = { "rustfmt" },
         javascript = { "prettier", "biome" },
         typescript = { "prettier", "biome" },
@@ -41,7 +44,8 @@ return {
         jsx = { "prettier", "biome" },
         vue = { "prettier", "biome" },
         html = { "prettier", "biome" },
-        sql = { "sleek" }
+        sql = { "sleek" },
+        json = { "prettier", "biome" },
       },
       format_on_save = {
         timeout_ms = 500,

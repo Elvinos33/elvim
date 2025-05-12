@@ -19,3 +19,9 @@ vim.opt.expandtab = true
 vim.g.mapleader = " "
 
 vim.o.background = "dark"
+
+-- yank to clipboard
+vim.opt.clipboard:prepend("unnamedplus")
+
+-- display renames in splits (https://github.com/smjonas/inc-rename.nvim)
+vim.opt.inccommand = "split"
