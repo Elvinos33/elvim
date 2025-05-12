@@ -28,10 +28,47 @@ return {
     words = { enabled = true },
   },
   keys = {
-    { "<leader>ff", function() Snacks.picker.files() end },
-    { "<leader>fg", function() Snacks.picker.grep() end },
-    { "<leader>gg", function() Snacks.lazygit() end },
-    { "<leader>go", function() Snacks.gitbrowse() end },
-    { "<leader>gb", function() Snacks.git.blame_line() end },
-  }
+    {
+      "<leader>ff",
+      function()
+        Snacks.picker.files()
+      end,
+    },
+    {
+      "<leader>fs",
+      function()
+        Snacks.picker.smart()
+      end,
+    },
+    {
+      "<leader>fb",
+      function()
+        Snacks.picker.buffers()
+      end,
+    },
+    {
+      "<leader>fg",
+      function()
+        Snacks.picker.grep()
+      end,
+    },
+    {
+      "<leader>gg",
+      function()
+        Snacks.lazygit()
+      end,
+    },
+    {
+      "<leader>go",
+      function()
+        Snacks.gitbrowse()
+      end,
+    },
+    {
+      "<leader>gb",
+      function()
+        Snacks.git.blame_line()
+      end,
+    },
+  },
 }
