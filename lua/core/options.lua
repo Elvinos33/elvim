@@ -1,5 +1,8 @@
+-- Add cwd as title in terminal
+vim.opt.title          = true
+
 -- Line Number and Relative Line Number
-vim.opt.number = true
+vim.opt.number         = true
 vim.opt.relativenumber = true
 
 vim.filetype.add({ extension = { vcl = 'vcl', vtc = 'vtc' } })

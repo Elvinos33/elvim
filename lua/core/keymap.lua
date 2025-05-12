@@ -49,10 +49,14 @@ vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:lis
 
 -- AI Stuff
 ------------------------------------------------------------------
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-
 vim.keymap.set("v", "<leader>gl", "<CMD>'<,'>CodeCompanion<CR>", { desc = "Open Codecompanion", noremap = true })
 vim.keymap.set("n", "<leader>gl", "<CMD>CodeCompanion<CR>", { desc = "Open Codecompanion", noremap = true })
 vim.keymap.set({ "n", "x" }, "<leader>gh", "<CMD>CodeCompanionChat toggle<CR>", { desc = "Open Codecompanion" })
+
+-- Window Navigation
+------------------------------------------------------------------
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left split" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to below split" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to above split" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right split" })
 ------------------------------------------------------------------
