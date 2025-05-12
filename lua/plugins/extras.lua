@@ -5,21 +5,21 @@ return {
     opts = {},
   },
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
     },
     keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
   {
@@ -30,12 +30,15 @@ return {
     },
   },
   {
-    "utilyre/barbecue.nvim",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons",
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+    opts = {
+      debounce = 10,
+      render_modes = true,
+      sign = {
+        enabled = false,
+      },
     },
-    opts = {},
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -50,36 +53,99 @@ return {
   },
   {
     "echasnovski/mini.diff",
-    opts = {}
+    opts = {},
+  },
+  {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      -- live-preview for :%s substitutions
+      vim.opt.inccommand = "split"
+      -- bigger command-line window
+      vim.opt.cmdwinheight = 20
+      require("inc_rename").setup()
+    end,
   },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    version = "*",
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    opts = {},
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          -- bottom_search = true, -- use a classic bottom cmdline for search
+          -- command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = true, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+      })
+    end,
   },
   {
     "echasnovski/mini.ai",
-    version = '*',
+    version = "*",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     opts = function()
-      local miniai = require('mini.ai')
+      local miniai = require("mini.ai")
       return {
         n_lines = 500,
         custom_textobjects = {
-          F = miniai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+          F = miniai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
         },
       }
-    end
+    end,
   },
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    config = function()
+      require("harpoon"):setup({})
+    end,
+    keys = {
+      {
+        "<leader>a",
+        function()
+          require("harpoon"):list():add()
+        end,
+        desc = "Harpoon add file",
+      },
+      {
+        "<C-e>",
+        function()
+          local harpoon = require("harpoon")
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = "Harpoon toggle UI",
+      },
+      {
+        "<C-ø>",
+        function()
+          require("harpoon"):list():prev()
+        end,
+        desc = "Harpoon previous",
+      },
+      {
+        "<C-æ>",
+        function()
+          require("harpoon"):list():next()
+        end,
+        desc = "Harpoon next",
+      },
+    },
   },
 }
