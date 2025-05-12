@@ -65,6 +65,9 @@ return {
         end,
       },
       strategies = {
+        inline = {
+          provider = "openai"
+        },
         chat = {
           adapter = "openai_custom",
           keymaps = {

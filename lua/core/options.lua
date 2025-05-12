@@ -2,6 +2,8 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.filetype.add({ extension = { vcl = 'vcl', vtc = 'vtc' } })
+
 -- Persistent Undo
 vim.opt.undofile = true
 

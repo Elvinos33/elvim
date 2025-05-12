@@ -1,5 +1,6 @@
 -- Base Bindings
 ------------------------------------------------------------------
+
 --- Yank & Paste
 vim.keymap.set("n", "<leader>yy", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
 vim.keymap.set("n", "<leader>p", '"0p', { desc = "Paste last yanked item under line", noremap = true })
@@ -10,6 +11,7 @@ vim.keymap.set("i", "jk", "<ESC>", { desc = "exit insert mode with jk", noremap 
 
 --- Remove highligts
 vim.keymap.set("n", "<leader>rh", "<CMD>noh<CR>", { desc = "Stop highlighting words" })
+
 
 ------------------------------------------------------------------
 
