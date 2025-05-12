@@ -3,26 +3,29 @@ return {
   "neovim/nvim-lspconfig", -- LSP
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "williamboman/mason.nvim", config = true }, -- For installing and managing LSPs
-    { "williamboman/mason-lspconfig.nvim" }, -- To use Mason with native LSP
-    { "hrsh7th/cmp-nvim-lsp" }, -- For LSP completion
-    { "j-hui/fidget.nvim" }, -- For LSP status updates
+    { "williamboman/mason.nvim",          config = true }, -- For installing and managing LSPs
+    { "williamboman/mason-lspconfig.nvim" },               -- To use Mason with native LSP
+    { "hrsh7th/cmp-nvim-lsp" },                            -- For LSP completion
   },
   config = function()
     -- Setup Mason
     require("mason").setup({
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Elvinos33/mason-registry",
+      },
       ui = {
         border = "rounded",
         icons = {
           package_installed = "✓",
           package_pending = "⟳",
           package_uninstalled = "✗",
-        },
+        }
       },
     })
 
     require("mason-lspconfig").setup({
-      ensure_installed = vim.tbl_keys(require("plugins.lsp-servers.servers")),
+      ensure_installed = vim.tbl_keys(require("plugins.lsp-servers.servers"))
     })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -34,7 +37,12 @@ return {
         server_opts.capabilities = capabilities
 
         require("lspconfig")[server].setup(server_opts)
-      end,
+      end
     })
-  end,
+
+    for server, config in pairs(require("plugins.lsp-servers.custom")) do
+      require("lspconfig.configs")[server] = config
+      require("lspconfig")[server].setup(config)
+    end
+  end
 }
