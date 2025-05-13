@@ -78,7 +78,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "copilot",
+          adapter = "litellm",
           roles = {
             llm = function(adapter)
               local model_name = ""
@@ -90,7 +90,8 @@ return {
                 model_name = model
                 model_name = string.match(model_name, "/(.*)") or model_name
               end
-              return " " .. string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
+              return " " ..
+              string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
             end,
             user = " User",
           },
@@ -107,9 +108,9 @@ return {
           },
         },
         cmd = {
-          adapter = "copilot",
+          adapter = "litellm",
         },
-        inline = { adapter = "copilot" },
+        inline = { adapter = "litellm" },
       },
     },
   },
