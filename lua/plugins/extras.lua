@@ -62,6 +62,7 @@ return {
       vim.opt.inccommand = "split"
       -- bigger command-line window
       vim.opt.cmdwinheight = 20
+      vim.keymap.set("n", "<leader>rn", ":IncRename ", { desc = "Rename under cursor, multiple files" })
       require("inc_rename").setup()
     end,
   },
