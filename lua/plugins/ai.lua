@@ -78,7 +78,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "copilot",
+          adapter = "openai",
           roles = {
             llm = function(adapter)
               local model_name = ""
@@ -107,9 +107,9 @@ return {
           },
         },
         cmd = {
-          adapter = "copilot",
+          adapter = "openai",
         },
-        inline = { adapter = "copilot" },
+        inline = { adapter = "openai" },
       },
     },
   },
