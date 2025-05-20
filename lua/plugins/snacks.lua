@@ -53,7 +53,7 @@ return {
       end,
     },
     {
-      "<leader>gg",
+      "<leader>lg",
       function()
         Snacks.lazygit()
       end,

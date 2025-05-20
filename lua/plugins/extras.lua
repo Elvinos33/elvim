@@ -5,21 +5,16 @@ return {
     opts = {},
   },
   {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-      "TmuxNavigatorProcessList",
+    "mrjones2014/smart-splits.nvim",
+    lazy = false,
+    opts = {
+      at_edge = "wrap",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      { "<c-h>", function() require("smart-splits").move_cursor_left() end,  mode = { "i", "n", "v" }, desc = "Move to the left window" },
+      { "<c-j>", function() require("smart-splits").move_cursor_down() end,  mode = { "i", "n", "v" }, desc = "Move down a window" },
+      { "<c-k>", function() require("smart-splits").move_cursor_up() end,    mode = { "i", "n", "v" }, desc = "Move up a window" },
+      { "<c-l>", function() require("smart-splits").move_cursor_right() end, mode = { "i", "n", "v" }, desc = "Move to the right window" },
     },
   },
   {
@@ -30,14 +25,17 @@ return {
     },
   },
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
-    opts = {
-      debounce = 10,
-      render_modes = true,
-      sign = {
-        enabled = false,
-      },
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
   },
   {
@@ -87,8 +85,8 @@ return {
           -- bottom_search = true, -- use a classic bottom cmdline for search
           -- command_palette = true, -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = true, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
+          inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
       })
     end,
@@ -148,4 +146,7 @@ return {
       },
     },
   },
+  {
+    "vimpostor/vim-tpipeline",
+  }
 }

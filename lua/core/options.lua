@@ -1,4 +1,6 @@
 -- Add cwd as title in terminal
+vim.o.title            = true
+vim.o.titlestring      = "nvim: %t"
 vim.opt.title          = true
 
 -- Line Number and Relative Line Number

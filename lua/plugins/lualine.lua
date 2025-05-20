@@ -3,55 +3,58 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  opts = {
-    options = {
-      icons_enabled = true,
-      theme = "auto",
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
-      disabled_filetypes = {
-        statusline = {},
-        winbar = {},
-      },
-      ignore_focus = {},
-      always_divide_middle = true,
-      globalstatus = false,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-      },
-    },
-    sections = {
-      lualine_a = { "mode" },
-      lualine_b = { "branch", "diff", "diagnostics" },
-      lualine_c = {},
-      lualine_x = { "encoding", "fileformat", "filetype" },
-      lualine_y = { "progress" },
-      lualine_z = { "location" },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
-      lualine_y = {},
-      lualine_z = {},
-    },
-    tabline = {
-      lualine_c = {
-        {
-          "filename",
-          path = 1,
-          cond = function()
-            local file = vim.fn.expand("%:t")
-            return file ~= ""
-          end,
+  opts = function()
+    local custom_theme = require('lualine.themes.auto') -- or your preferred theme
+
+    for _, mode in pairs(custom_theme) do
+      for _, section in pairs(mode) do
+        section.bg = "NONE"
+      end
+    end
+
+    return {
+      options = {
+        icons_enabled = true,
+        theme = custom_theme,
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
         },
       },
-    },
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {},
-  },
+      sections = {
+        lualine_a = {
+          {
+            "mode",
+            color = { fg = custom_theme.normal.a.bg, gui = "bold" },
+          }
+        },
+        lualine_b = { "branch", "diff" },
+        lualine_c = {},
+        lualine_x = {
+          {
+            'filename',
+            fmt = function(name)
+              return (name == '[No Name]' or name == '') and '' or name
+            end,
+          },
+          "filetype",
+        },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
+    }
+  end
 }
