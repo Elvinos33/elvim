@@ -26,7 +26,18 @@ return {
     init = function()
       vim.env.OPENAI_API_KEY = os.getenv("LITELLM_PERSONAL_API_KEY")
     end,
-    opts = {}
+    opts = {
+      providers = {
+        openai = {
+          "gemini/gemini-2.5-pro-preview-05-06",
+          "gemini/gemini-2.5-flash-preview-05-06",
+          "openai/gpt-4o",
+          "openai/o3",
+          "openai/o4-mini",
+          "bedrock-claude3.7-sonnet",
+        }
+      }
+    }
   }
   -- {
   --   "olimorris/codecompanion.nvim",
