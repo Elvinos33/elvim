@@ -14,7 +14,7 @@ return {
             "${3rd}/love2d/library",
           },
         },
-        diagnostics = { globals = { 'vim' } },
+        diagnostics = { globals = { "vim" } },
       },
     },
   },
@@ -22,9 +22,9 @@ return {
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
-        command = "EslintFixAll"
+        command = "EslintFixAll",
       })
-    end
+    end,
   },
   bashls = {
     filetypes = { "sh", "bash", "zsh", "envrc" },
@@ -34,7 +34,47 @@ return {
   },
   vtsls = {},
   gopls = {},
-  pyright = {},
+  --  Pyright for LSP features (Go to Definition, Hover, etc.)
+  pyright = {
+    -- https://github.com/microsoft/pyright/discussions/5852#discussioncomment-6874502
+    -- capabilities = {
+    --   textDocument = {
+    --     publishDiagnostics = {
+    --       tagSupport = {
+    --         valueSet = { 2 },
+    --       },
+    --     },
+    --   },
+    -- },
+    settings = {
+      pyright = {
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          -- ignore = { "*" },
+          typeCheckingMode = "off",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+        },
+      },
+    },
+  },
+  ruff = {
+    settings = {
+      -- logLevel = "info",
+      -- logFile = "~/.local/state/nvim/ruff-lsp.log",
+      lint = {
+        select = { "E", "F", "B", "I" },
+      },
+      format = {
+        lineLength = 130,
+      },
+    },
+    on_attach = function(client)
+      client.server_capabilities.hoverProvider = false
+    end,
+  },
   astro = {},
   svelte = {},
   emmet_ls = {},
