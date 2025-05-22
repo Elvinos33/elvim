@@ -37,8 +37,8 @@ return {
         desc = "Open CodeCompanion Actions",
       })
     end,
-    opts = {
-      adapters = {
+    opts = (function()
+      local adapters = {
         copilot_custom = function()
           return require("codecompanion.adapters").extend("copilot", {
             name = "copilot_custom",
@@ -54,7 +54,7 @@ return {
         openai_custom = function()
           return require("codecompanion.adapters").extend("openai", {
             name = "openai_custom",
-            schema = { model = { default = "o4-mini" } },
+            schema = { model = { default = "o3-2025-04-16" } },
           })
         end,
         litellm = function()
@@ -65,52 +65,65 @@ return {
             },
             schema = {
               model = {
-                default = "gemini/gemini-2.0-flash",
+                default = "gemini/gemini-2.5-pro-preview-05-06",
               },
             },
           })
         end,
-      },
-      display = {
-        diff = {
-          provider = "mini_diff",
-        },
-      },
-      strategies = {
-        chat = {
-          adapter = "openai",
-          roles = {
-            llm = function(adapter)
-              local model_name = ""
-              if adapter.schema and adapter.schema.model and adapter.schema.model.default then
-                local model = adapter.schema.model.default
-                if type(model) == "function" then
-                  model = model(adapter)
-                end
-                model_name = model
-                model_name = string.match(model_name, "/(.*)") or model_name
-              end
-              return " " .. string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
-            end,
-            user = " User",
+      }
+
+      -- define which adapters to use for each strategy
+      local default_adapters = {
+        chat = "litellm",
+        cmd = "openai_custom",
+        inline = "openai",
+      }
+
+      return {
+        adapters = adapters,
+        display = {
+          diff = {
+            provider = "mini_diff",
           },
-          keymaps = {
-            send = {
-              callback = function(chat)
-                vim.cmd("stopinsert")
-                chat:submit()
-                chat:add_buf_message({ role = "llm", content = "" })
+        },
+        strategies = {
+          chat = {
+            adapter = default_adapters.chat,
+            roles = {
+              llm = function(adapter)
+                local model_name = ""
+                if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+                  local model = adapter.schema.model.default
+                  if type(model) == "function" then
+                    model = model(adapter)
+                  end
+                  model_name = model
+                  model_name = string.match(model_name, "/(.*)") or model_name
+                end
+                return " " .. string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
               end,
-              index = 1,
-              description = "Send",
+              user = " User",
+            },
+            keymaps = {
+              send = {
+                callback = function(chat)
+                  vim.cmd("stopinsert")
+                  chat:submit()
+                  chat:add_buf_message({ role = "llm", content = "" })
+                end,
+                index = 1,
+                description = "Send",
+              },
             },
           },
+          cmd = {
+            adapter = default_adapters.cmd,
+          },
+          inline = {
+            adapter = default_adapters.inline,
+          },
         },
-        cmd = {
-          adapter = "openai",
-        },
-        inline = { adapter = "openai" },
-      },
-    },
+      }
+    end)(),
   },
 }

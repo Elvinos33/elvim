@@ -5,6 +5,26 @@ return {
     opts = {},
   },
   {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+  -- stylua: ignore
+  keys = {
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+  },
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+  {
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
@@ -41,17 +61,6 @@ return {
     },
   },
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
-    opts = {
-      debounce = 10,
-      render_modes = true,
-      sign = {
-        enabled = false,
-      },
-    },
-  },
-  {
     "echasnovski/mini.diff",
     opts = {},
   },
@@ -62,8 +71,8 @@ return {
       vim.opt.inccommand = "split"
       -- bigger command-line window
       vim.opt.cmdwinheight = 20
-      vim.keymap.set("n", "<leader>rn", ":IncRename ", { desc = "Rename under cursor, multiple files" })
       require("inc_rename").setup()
+      vim.keymap.set("n", "<leader>rn", ":IncRename ", { desc = "Rename under cursor, multiple files" })
     end,
   },
   {
