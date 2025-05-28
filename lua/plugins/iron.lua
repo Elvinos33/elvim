@@ -18,8 +18,11 @@ return {
           },
           python = {
             -- Get the current working directory
+            -- command = function()
+            --   return { "ipython", "--no-autoindent", "--colors=Linux" }
+            -- end,
             command = function()
-              return { "ipython", "--no-autoindent", "--colors=Linux" }
+              return { "python" }
             end,
             format = common.bracketed_paste_python,
             block_dividers = { "# %%", "#%%" },
@@ -30,7 +33,7 @@ return {
           return ft
         end,
         -- How the repl window will be displayed
-        repl_open_cmd = view.right(60),
+        repl_open_cmd = view.right(120),
       },
       -- Iron doesn't set keymaps by default anymore.
       keymaps = {
