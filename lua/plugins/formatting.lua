@@ -27,7 +27,7 @@ return {
             "--apply",
             "--formatter-format-with-errors",
           },
-          require_cwd = true,
+          require_cwd = false,
           cwd = require("conform.util").root_file({ "biome.json" }),
         },
         stylua = {
