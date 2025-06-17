@@ -32,7 +32,12 @@ return {
   vimls = {
     filetypes = { "vim" },
   },
-  vtsls = {},
+  vtsls = {
+    on_attach = function(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+  },
   gopls = {},
   --  Pyright for LSP features (Go to Definition, Hover, etc.)
   pyright = {
@@ -76,6 +81,7 @@ return {
     end,
   },
   astro = {},
+  biome = {},
   svelte = {},
   emmet_ls = {},
   html = {},

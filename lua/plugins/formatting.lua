@@ -27,7 +27,7 @@ return {
             "--apply",
             "--formatter-format-with-errors",
           },
-          require_cwd = false,
+          require_cwd = true,
           cwd = require("conform.util").root_file({ "biome.json" }),
         },
         stylua = {
@@ -53,7 +53,7 @@ return {
       },
       format_on_save = {
         timeout_ms = 500,
-        lsp_format = "fallback",
+        -- lsp_format = "fallback",
       },
     })
   end,
