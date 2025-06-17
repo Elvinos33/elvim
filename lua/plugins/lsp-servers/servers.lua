@@ -32,7 +32,16 @@ return {
   vimls = {
     filetypes = { "vim" },
   },
-  vtsls = {},
+  vtsls = {
+    root_dir = function()
+      require("lspconfig").util.root_pattern("package.json")
+    end
+  },
+  denols = {
+    root_dir = function()
+      require("lspconfig").util.root_pattern("import_map.json", "deno.json")
+    end
+  },
   gopls = {},
   pyright = {},
   astro = {},
