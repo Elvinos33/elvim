@@ -22,3 +22,11 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
 vim.keymap.set("n", "ge", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message (Error message)" })
 vim.keymap.set("n", "gE", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
 ------------------------------------------------------------------
+
+-- Vault convert json to env
+vim.keymap.set(
+  "n",
+  "<leader>vf",
+  [[:%!jq -r 'to_entries | .[] | "\(.key)=\(.value)"'<CR>]],
+  { desc = "Convert a vault json object to .env" }
+)
