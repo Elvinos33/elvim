@@ -1,18 +1,6 @@
 -- lua/plugins/ai.lua
 return {
   {
-    "github/copilot.vim",
-    config = function()
-      vim.g.copilot_auth_provider_url = "https://schibsted.ghe.com"
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_settings = { selectedCompletionModel = "gpt-4o-copilot" }
-      vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', {
-        silent = true,
-        expr = true,
-      })
-    end,
-  },
-  {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -39,22 +27,10 @@ return {
     end,
     opts = (function()
       local adapters = {
-        copilot_custom = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            name = "copilot_custom",
-            schema = { model = { default = "claude-3.7-sonnet" } },
-          })
-        end,
         gemini_custom = function()
           return require("codecompanion.adapters").extend("gemini", {
             name = "gemini_custom",
-            schema = { model = { default = "gemini-2.5-pro-exp-03-25" } },
-          })
-        end,
-        openai_custom = function()
-          return require("codecompanion.adapters").extend("openai", {
-            name = "openai_custom",
-            schema = { model = { default = "o3-2025-04-16" } },
+            schema = { model = { default = "gemini-2.5-pro" } },
           })
         end,
         litellm = function()
@@ -74,9 +50,9 @@ return {
 
       -- define which adapters to use for each strategy
       local default_adapters = {
-        chat = "litellm",
-        cmd = "openai_custom",
-        inline = "openai",
+        chat = "gemini_custom",
+        cmd = "gemini",
+        inline = "gemini",
       }
 
       return {
