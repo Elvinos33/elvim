@@ -26,8 +26,13 @@ vim.o.background = "dark"
 -- yank to clipboard
 vim.opt.clipboard:prepend("unnamedplus")
 
--- display renames in splits (https://github.com/smjonas/inc-rename.nvim)
-vim.opt.inccommand = "split"
-
 -- case sensitive if search string includes uppercase
 vim.opt.smartcase = true
+
+vim.opt.termguicolors = true
+
+-- LSP Diagnostics updatetime 300 ms
+vim.opt.updatetime = 300
+
+-- noice manages most of it, but for those it does not
+vim.opt.cmdheight = 0
