@@ -41,18 +41,9 @@ return {
   gopls = {},
   --  Pyright for LSP features (Go to Definition, Hover, etc.)
   pyright = {
-    -- https://github.com/microsoft/pyright/discussions/5852#discussioncomment-6874502
-    -- capabilities = {
-    --   textDocument = {
-    --     publishDiagnostics = {
-    --       tagSupport = {
-    --         valueSet = { 2 },
-    --       },
-    --     },
-    --   },
-    -- },
     settings = {
       pyright = {
+        -- ruff handles this
         disableOrganizeImports = true,
       },
       python = {
