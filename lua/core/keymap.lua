@@ -1,9 +1,6 @@
 -- Base Bindings
 ------------------------------------------------------------------
 
---- Yank & Paste
-vim.keymap.set("n", "<leader>yy", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
-
 --- Escape
 vim.keymap.set("i", "jk", "<ESC>", { desc = "exit insert mode with jk", noremap = true })
 
