@@ -34,6 +34,7 @@ return {
         stylua = {
           prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
         },
+        clangd = {},
       },
       formatters_by_ft = {
         lua = { "stylua" },
@@ -51,6 +52,10 @@ return {
         html = { "biome", "prettier" },
         sql = { "sleek" },
         json = { "biome", "prettier" },
+        cpp = { "clang-format" },
+        c = { "clang-format" },
+        h = { "clang-format" },
+        hpp = { "clang-format" },
       },
       format_on_save = {
         timeout_ms = 500,

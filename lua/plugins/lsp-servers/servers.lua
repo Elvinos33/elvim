@@ -77,4 +77,5 @@ return {
   emmet_ls = {},
   html = {},
   tailwindcss = {},
+  clangd = {},
 }
