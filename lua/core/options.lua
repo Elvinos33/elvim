@@ -27,6 +27,7 @@ vim.o.background = "dark"
 vim.opt.clipboard:prepend("unnamedplus")
 
 -- case sensitive if search string includes uppercase
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
