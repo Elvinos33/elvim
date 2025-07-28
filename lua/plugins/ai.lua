@@ -50,7 +50,7 @@ return {
 
       -- define which adapters to use for each strategy
       local default_adapters = {
-        chat = "gemini_custom",
+        chat = "litellm",
         cmd = "gemini",
         inline = "gemini",
       }
