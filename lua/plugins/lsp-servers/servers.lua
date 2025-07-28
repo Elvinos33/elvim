@@ -52,7 +52,7 @@ return {
       },
       python = {
         analysis = {
-          ignore = { "*" },
+          -- ignore = { "*" },
           typeCheckingMode = "off",
           autoSearchPaths = true,
           useLibraryCodeForTypes = true,
@@ -63,14 +63,12 @@ return {
   ruff = {
     init_options = {
       settings = {
-        -- logLevel = "info",
-        -- logFile = "~/.local/state/nvim/ruff-lsp.log",
+        logLevel = "info",
         lint = {
-          select = { "E", "F", "B", "I" },
+          select = { "W", "E", "F", "B", "I" },
+          enable = true,
         },
-        format = {
-          lineLength = 130,
-        },
+        lineLength = 130,
       },
     },
     on_attach = function(client)
