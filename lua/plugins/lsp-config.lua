@@ -24,27 +24,26 @@ return {
       },
     })
 
-    require("mason-lspconfig").setup({
-      ensure_installed = vim.tbl_keys(require("plugins.lsp-servers.servers")),
-    })
-
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+    -- Combine all server configurations
+    local servers = require("plugins.lsp-servers.servers")
+    local custom_servers = require("plugins.lsp-servers.custom")
+    local all_servers = vim.tbl_deep_extend("force", servers, custom_servers)
+
+    -- Configure all servers using the new vim.lsp.config API
+    for server_name, server_config in pairs(all_servers) do
+      -- The 'default_config' key is used for custom servers
+      local opts = server_config.default_config or server_config
+      opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
+      vim.lsp.config(server_name, opts)
+    end
+
+    -- mason-lspconfig will see the configurations set by vim.lsp.config
+    -- and automatically call vim.lsp.enable() for installed servers.
     require("mason-lspconfig").setup({
       ensure_installed = vim.tbl_keys(require("plugins.lsp-servers.servers")),
-      handlers = {
-        function(server_name)
-          local server_opts = require("plugins.lsp-servers.servers")[server_name] or {}
-          server_opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_opts.capabilities or {})
-          require("lspconfig")[server_name].setup(server_opts)
-        end,
-      },
     })
-
-    for server, config in pairs(require("plugins.lsp-servers.custom")) do
-      require("lspconfig.configs")[server] = config
-      require("lspconfig")[server].setup(config)
-    end
   end,
 }

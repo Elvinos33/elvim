@@ -12,6 +12,10 @@ return {
           telemetry = { enable = false },
           library = {
             "${3rd}/love2d/library",
+            vim.env.VIMRUNTIME .. "/lua",
+            vim.fn.stdpath("config") .. "/lua",
+            vim.fn.stdpath("data") .. "/lazy/snacks.nvim/lua",
+            vim.fn.stdpath("data") .. "/lazy/flash.nvim/lua",
           },
         },
         diagnostics = { globals = { "vim" } },
@@ -48,7 +52,7 @@ return {
       },
       python = {
         analysis = {
-          -- ignore = { "*" },
+          ignore = { "*" },
           typeCheckingMode = "off",
           autoSearchPaths = true,
           useLibraryCodeForTypes = true,
@@ -57,14 +61,16 @@ return {
     },
   },
   ruff = {
-    settings = {
-      -- logLevel = "info",
-      -- logFile = "~/.local/state/nvim/ruff-lsp.log",
-      lint = {
-        select = { "E", "F", "B", "I" },
-      },
-      format = {
-        lineLength = 130,
+    init_options = {
+      settings = {
+        -- logLevel = "info",
+        -- logFile = "~/.local/state/nvim/ruff-lsp.log",
+        lint = {
+          select = { "E", "F", "B", "I" },
+        },
+        format = {
+          lineLength = 130,
+        },
       },
     },
     on_attach = function(client)
