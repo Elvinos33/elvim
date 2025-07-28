@@ -16,8 +16,21 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
 
 -- Diagnostics
 ------------------------------------------------------------------
-vim.keymap.set("n", "ge", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message (Error message)" })
-vim.keymap.set("n", "gE", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
+vim.keymap.set("n", "ge", function()
+  if require("trouble").is_open() then
+    require("trouble").next({ skip_groups = true, jump = true })
+  else
+    vim.diagnostic.goto_next()
+  end
+end, { desc = "Go to next diagnostic" })
+
+vim.keymap.set("n", "gE", function()
+  if require("trouble").is_open() then
+    require("trouble").prev({ skip_groups = true, jump = true })
+  else
+    vim.diagnostic.goto_prev()
+  end
+end, { desc = "Go to prev diagnostic" })
 ------------------------------------------------------------------
 
 -- Vault convert json to env
