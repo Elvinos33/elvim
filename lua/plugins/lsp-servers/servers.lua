@@ -12,9 +12,13 @@ return {
           telemetry = { enable = false },
           library = {
             "${3rd}/love2d/library",
+            vim.env.VIMRUNTIME .. "/lua",
+            vim.fn.stdpath("config") .. "/lua",
+            vim.fn.stdpath("data") .. "/lazy/snacks.nvim/lua",
+            vim.fn.stdpath("data") .. "/lazy/flash.nvim/lua",
           },
         },
-        diagnostics = { globals = { 'vim' } },
+        diagnostics = { globals = { "vim" } },
       },
     },
   },
@@ -22,9 +26,9 @@ return {
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
-        command = "EslintFixAll"
+        command = "EslintFixAll",
       })
-    end
+    end,
   },
   bashls = {
     filetypes = { "sh", "bash", "zsh", "envrc" },
@@ -33,20 +37,49 @@ return {
     filetypes = { "vim" },
   },
   vtsls = {
-    root_dir = function()
-      require("lspconfig").util.root_pattern("package.json")
-    end
-  },
-  denols = {
-    root_dir = function()
-      require("lspconfig").util.root_pattern("import_map.json", "deno.json")
-    end
+    on_attach = function(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end,
   },
   gopls = {},
-  pyright = {},
+  --  Pyright for LSP features (Go to Definition, Hover, etc.)
+  pyright = {
+    settings = {
+      pyright = {
+        -- ruff handles this
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          -- ignore = { "*" },
+          typeCheckingMode = "off",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+        },
+      },
+    },
+  },
+  ruff = {
+    init_options = {
+      settings = {
+        logLevel = "info",
+        lint = {
+          select = { "W", "E", "F", "B", "I" },
+          enable = true,
+        },
+        lineLength = 130,
+      },
+    },
+    on_attach = function(client)
+      client.server_capabilities.hoverProvider = false
+    end,
+  },
   astro = {},
+  biome = {},
   svelte = {},
   emmet_ls = {},
   html = {},
   tailwindcss = {},
+  clangd = {},
 }
