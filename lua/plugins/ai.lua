@@ -65,7 +65,7 @@ return {
             },
             schema = {
               model = {
-                default = "gemini/gemini-2.5-flash-preview-04-17",
+                default = "bedrock-claude4-sonnet",
               },
             },
           })
