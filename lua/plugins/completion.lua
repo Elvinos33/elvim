@@ -7,10 +7,12 @@ return {
     -- LSP Completion
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
-
+    "windwp/nvim-autopairs",
+    "ray-x/cmp-treesitter",
+    "hrsh7th/cmp-buffer",
     -- Snippets
-    "L3MON4D3/LuaSnip",             -- Plugin for snippets
-    "saadparwaiz1/cmp_luasnip",     -- Use snippets with LSP
+    "L3MON4D3/LuaSnip", -- Plugin for snippets
+    "saadparwaiz1/cmp_luasnip", -- Use snippets with LSP
     "rafamadriz/friendly-snippets", -- Extra nice to have snippets
   },
   config = function()
@@ -23,26 +25,26 @@ return {
 
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        ['<C-Tab>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping.select_next_item(),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+        ["<C-Tab>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
-        end
+        end,
       },
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
       sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'treesitter' },
-      })
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "treesitter" },
+      }),
     })
-  end
+  end,
 }
