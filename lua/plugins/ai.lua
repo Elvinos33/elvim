@@ -9,22 +9,35 @@ return {
     init = function()
       local spinner = require("plugins.extensions.codecompanion-spinner")
       spinner:init()
-
-      vim.keymap.set("x", "<leader>gl", ":<C-u>'<,'>CodeCompanion<CR>", {
+    end,
+    keys = {
+      {
+        "<leader>gl",
+        ":<C-u>'<,'>CodeCompanion<CR>",
+        mode = "x",
         desc = "Inline fix code",
         silent = true,
-      })
-      vim.keymap.set("x", "<leader>ga", ":<C-u>'<,'>CodeCompanionChat Add<CR>", {
+      },
+      {
+        "<leader>ga",
+        ":<C-u>'<,'>CodeCompanionChat Add<CR>",
+        mode = "x",
         desc = "Add to Chat",
         silent = true,
-      })
-      vim.keymap.set("n", "<leader>gt", "<CMD>CodeCompanionChat Toggle<CR>", {
+      },
+      {
+        "<leader>gt",
+        "<CMD>CodeCompanionChat Toggle<CR>",
+        mode = "n",
         desc = "Toggle Chat",
-      })
-      vim.keymap.set("n", "<leader>gc", "<CMD>CodeCompanionActions<CR>", {
+      },
+      {
+        "<leader>gc",
+        "<CMD>CodeCompanionActions<CR>",
+        mode = "n",
         desc = "Open CodeCompanion Actions",
-      })
-    end,
+      },
+    },
     opts = (function()
       local adapters = {
         gemini_custom = function()
@@ -57,6 +70,23 @@ return {
 
       return {
         adapters = adapters,
+        extensions = {
+          mcphub = {
+            callback = "mcphub.extensions.codecompanion",
+            opts = {
+              -- MCP Tools
+              make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
+              show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
+              add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
+              show_result_in_chat = true, -- Show tool results directly in chat buffer
+              format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
+              -- MCP Resources
+              make_vars = true, -- Convert MCP resources to #variables for prompts
+              -- MCP Prompts
+              make_slash_commands = true, -- Add MCP prompts as /slash commands
+            },
+          },
+        },
         display = {
           diff = {
             provider = "mini_diff",
@@ -78,7 +108,7 @@ return {
                 end
                 return " " .. string.upper(string.sub(model_name, 1, 1)) .. string.sub(model_name, 2) -- Capitalize the first letter
               end,
-              user = " User",
+              user = " Haarr",
             },
             keymaps = {
               send = {
