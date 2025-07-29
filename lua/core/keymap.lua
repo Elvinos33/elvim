@@ -20,7 +20,7 @@ vim.keymap.set("n", "ge", function()
   if require("trouble").is_open() then
     require("trouble").next({ skip_groups = true, jump = true })
   else
-    vim.diagnostic.goto_next()
+    vim.diagnostic.jump({ count = 1, float = true })
   end
 end, { desc = "Go to next diagnostic" })
 
@@ -28,7 +28,7 @@ vim.keymap.set("n", "gE", function()
   if require("trouble").is_open() then
     require("trouble").prev({ skip_groups = true, jump = true })
   else
-    vim.diagnostic.goto_prev()
+    vim.diagnostic.jump({ count = -1, float = true })
   end
 end, { desc = "Go to prev diagnostic" })
 ------------------------------------------------------------------
