@@ -11,6 +11,11 @@ return {
       auto_install = true,
       ensure_installed = {
         "typescript",
+        "python",
+        "json",
+        "yaml",
+        "toml",
+        "markdown",
         "go",
         "rust",
         "lua",
@@ -26,7 +31,6 @@ return {
         additional_vim_regex_highlighting = false,
       },
       indent = { enable = true },
-
     })
-  end
+  end,
 }
