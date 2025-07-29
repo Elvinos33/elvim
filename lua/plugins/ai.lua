@@ -21,7 +21,7 @@ return {
       vim.keymap.set("n", "<leader>gt", "<CMD>CodeCompanionChat Toggle<CR>", {
         desc = "Toggle Chat",
       })
-      vim.keymap.set("n", "<leader>gd", "<CMD>CodeCompanionActions<CR>", {
+      vim.keymap.set("n", "<leader>gc", "<CMD>CodeCompanionActions<CR>", {
         desc = "Open CodeCompanion Actions",
       })
     end,
@@ -51,8 +51,8 @@ return {
       -- define which adapters to use for each strategy
       local default_adapters = {
         chat = "litellm",
-        cmd = "gemini",
-        inline = "gemini",
+        cmd = "litellm",
+        inline = "litellm",
       }
 
       return {
