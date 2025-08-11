@@ -46,6 +46,12 @@ return {
             schema = { model = { default = "gemini-2.5-pro" } },
           })
         end,
+        openai_custom = function()
+          return require("codecompanion.adapters").extend("openai", {
+            name = "openai_custom",
+            schema = { model = { default = "gpt-5" } },
+          })
+        end,
         litellm = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
