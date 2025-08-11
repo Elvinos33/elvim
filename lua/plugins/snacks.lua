@@ -20,6 +20,13 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    gitbrowse = {
+      notify = true,
+      remote_patterns = {
+        { "^schibsted@schibsted%.ghe%.com:(.+)%.git$", "https://schibsted.ghe.com/%1" },
+        { "^schibsted@schibsted%.ghe%.com:(.+)$", "https://schibsted.ghe.com/%1" },
+      },
+    },
     styles = {
       notification = {
         -- wo = { wrap = true } -- Wrap notifications
