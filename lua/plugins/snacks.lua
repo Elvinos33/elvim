@@ -7,7 +7,7 @@ return {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
     explorer = { enabled = true },
-    image = { enabled = true },
+    -- image = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = {
@@ -98,6 +98,13 @@ return {
         Snacks.picker.files()
       end,
       desc = "Find Files",
+    },
+    {
+      "<leader>fa", -- "fa" for Find All
+      function()
+        Snacks.picker.files({ ignored = true })
+      end,
+      desc = "Find All Files (incl. gitignored)",
     },
     {
       "<leader>fg",

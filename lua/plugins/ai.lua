@@ -40,38 +40,40 @@ return {
     },
     opts = (function()
       local adapters = {
-        gemini_custom = function()
-          return require("codecompanion.adapters").extend("gemini", {
-            name = "gemini_custom",
-            schema = { model = { default = "gemini-2.5-pro" } },
-          })
-        end,
-        openai_custom = function()
-          return require("codecompanion.adapters").extend("openai", {
-            name = "openai_custom",
-            schema = { model = { default = "gpt-5" } },
-          })
-        end,
-        litellm = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = {
-              url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
-              api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
-            },
-            schema = {
-              model = {
-                default = "bedrock-claude4-sonnet",
+        http = {
+          gemini_custom = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              name = "gemini_custom",
+              schema = { model = { default = "gemini-2.5-pro" } },
+            })
+          end,
+          openai_custom = function()
+            return require("codecompanion.adapters").extend("openai", {
+              name = "openai_custom",
+              schema = { model = { default = "gpt-5" } },
+            })
+          end,
+          litellm = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
+                api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
               },
-            },
-          })
-        end,
+              schema = {
+                model = {
+                  default = "bedrock-claude4-sonnet",
+                },
+              },
+            })
+          end,
+        },
       }
 
       -- define which adapters to use for each strategy
       local default_adapters = {
-        chat = "litellm",
-        cmd = "litellm",
-        inline = "litellm",
+        chat = "gemini_custom",
+        cmd = "gemini",
+        inline = "gemini",
       }
 
       return {
