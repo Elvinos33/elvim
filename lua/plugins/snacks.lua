@@ -9,12 +9,31 @@ return {
     git = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    gitbrowse = { enabled = true },
+    gitbrowse = {
+      notify = true,
+      remote_patterns = {
+        { "^schibsted@schibsted%.ghe%.com:(.+)%.git$", "https://schibsted.ghe.com/%1" },
+        { "^schibsted@schibsted%.ghe%.com:(.+)$",      "https://schibsted.ghe.com/%1" },
+      },
+    },
     notifier = {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      sources = {
+        files = {
+          hidden = true,   -- Show hidden files
+          ignored = false, -- Don't show gitignored files (respect gitignore)
+        },
+        smart = {
+          -- If you want smart picker to also include hidden files
+          multi = { "buffers", "recent", "files" },
+          -- The files source will inherit the hidden=true setting from above
+        },
+      },
+    },
     quickfile = { enabled = true },
     scope = { enabled = true },
     image = { enabled = true },

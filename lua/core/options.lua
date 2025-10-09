@@ -1,32 +1,69 @@
--- Add cwd as title in terminal
-vim.o.title            = true
-vim.o.titlestring      = "nvim: %t"
-vim.opt.title          = true
+-- ============================================================================
+-- Core Neovim Options Configuration
+-- ============================================================================
 
--- Line Number and Relative Line Number
-vim.opt.number         = true
-vim.opt.relativenumber = true
-
-vim.filetype.add({ extension = { vcl = 'vcl', vtc = 'vtc' } })
-
--- Persistent Undo
-vim.opt.undofile = true
-
--- Width of Tabs
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-
--- Number of spaces to insert a <Tab>
-vim.opt.expandtab = true
-
--- Leader
+-- Leader key (must be set before plugins are loaded)
 vim.g.mapleader = " "
 
-vim.o.background = "dark"
+-- ============================================================================
+-- UI and Display Options
+-- ============================================================================
 
--- yank to clipboard
+-- Terminal title configuration
+vim.opt.title = true
+vim.opt.titlestring = "nvim: %t"
+
+-- Line numbers
+vim.opt.number = true         -- Show absolute line numbers
+vim.opt.relativenumber = true -- Show relative line numbers
+
+-- Color scheme
+vim.opt.background = "dark"
+
+-- Remove tildes on empty lines
+vim.opt.fillchars = { eob = " " }
+
+-- Update time for various operations (CursorHold, swap file writing, etc.)
+vim.opt.updatetime = 300
+
+-- ============================================================================
+-- Editor Behavior
+-- ============================================================================
+
+-- Persistent undo across sessions
+vim.opt.undofile = true
+
+-- Search behavior
+vim.opt.ignorecase = true -- Ignore case in search patterns
+vim.opt.smartcase = true  -- Override ignorecase if search contains uppercase
+
+-- Command line completion
+vim.opt.inccommand = "split" -- Display renames in splits (useful for inc-rename.nvim)
+
+-- ============================================================================
+-- Indentation and Tabs
+-- ============================================================================
+
+vim.opt.shiftwidth = 2   -- Number of spaces for each indentation level
+vim.opt.tabstop = 2      -- Number of spaces a tab counts for
+vim.opt.softtabstop = 2  -- Number of spaces a tab counts for while editing
+vim.opt.expandtab = true -- Convert tabs to spaces
+
+-- ============================================================================
+-- Clipboard Integration
+-- ============================================================================
+
+-- Use system clipboard for yank/paste operations
 vim.opt.clipboard:prepend("unnamedplus")
 
--- display renames in splits (https://github.com/smjonas/inc-rename.nvim)
-vim.opt.inccommand = "split"
+-- ============================================================================
+-- File Type Detection
+-- ============================================================================
+
+-- Add custom file type associations
+vim.filetype.add({
+  extension = {
+    vcl = 'vcl', -- Varnish Configuration Language
+    vtc = 'vtc'  -- Varnish Test Case
+  }
+})

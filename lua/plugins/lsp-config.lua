@@ -3,9 +3,9 @@ return {
   "neovim/nvim-lspconfig", -- LSP
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "williamboman/mason.nvim", config = true }, -- For installing and managing LSPs
-    { "williamboman/mason-lspconfig.nvim" }, -- To use Mason with native LSP
-    { "hrsh7th/cmp-nvim-lsp" }, -- For LSP completion
+    { "williamboman/mason.nvim",          config = true }, -- For installing and managing LSPs
+    { "williamboman/mason-lspconfig.nvim" },               -- To use Mason with native LSP
+    { "hrsh7th/cmp-nvim-lsp" },                            -- For LSP completion
   },
   config = function()
     -- Setup Mason
@@ -38,6 +38,7 @@ return {
       local opts = server_config.default_config or server_config
       opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
       vim.lsp.config(server_name, opts)
+      vim.lsp.enable(server_name)
     end
 
     -- mason-lspconfig will see the configurations set by vim.lsp.config
