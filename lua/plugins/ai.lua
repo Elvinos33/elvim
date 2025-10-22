@@ -40,33 +40,32 @@ return {
     },
     opts = (function()
       local adapters = {
-        http = {
-          gemini_custom = function()
-            return require("codecompanion.adapters").extend("gemini", {
-              name = "gemini_custom",
-              schema = { model = { default = "gemini-2.5-pro" } },
-            })
-          end,
-          openai_custom = function()
-            return require("codecompanion.adapters").extend("openai", {
-              name = "openai_custom",
-              schema = { model = { default = "gpt-5" } },
-            })
-          end,
-          litellm = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              env = {
-                url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
-                api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
+        gemini_custom = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            name = "gemini_custom",
+            schema = { model = { default = "gemini-2.5-pro" } },
+          })
+        end,
+        openai_custom = function()
+          return require("codecompanion.adapters").extend("openai", {
+            name = "openai_custom",
+            schema = { model = { default = "gpt-5" } },
+          })
+        end,
+        litellm = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            name = "litellm", -- Added name field
+            env = {
+              url = "https://litellm.pct-ai-foundations-pro-1.eks.schibsted.io",
+              api_key = os.getenv("LITELLM_PERSONAL_API_KEY"),
+            },
+            schema = {
+              model = {
+                default = "bedrock-claude4-sonnet",
               },
-              schema = {
-                model = {
-                  default = "bedrock-claude4-sonnet",
-                },
-              },
-            })
-          end,
-        },
+            },
+          })
+        end,
       }
 
       -- define which adapters to use for each strategy
