@@ -5,19 +5,6 @@ return {
     opts = {},
   },
   {
-    "mrjones2014/smart-splits.nvim",
-    lazy = false,
-    opts = {
-      at_edge = "wrap",
-    },
-    keys = {
-      { "<c-h>", function() require("smart-splits").move_cursor_left() end,  mode = { "i", "n", "v" }, desc = "Move to the left window" },
-      { "<c-j>", function() require("smart-splits").move_cursor_down() end,  mode = { "i", "n", "v" }, desc = "Move down a window" },
-      { "<c-k>", function() require("smart-splits").move_cursor_up() end,    mode = { "i", "n", "v" }, desc = "Move up a window" },
-      { "<c-l>", function() require("smart-splits").move_cursor_right() end, mode = { "i", "n", "v" }, desc = "Move to the right window" },
-    },
-  },
-  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {

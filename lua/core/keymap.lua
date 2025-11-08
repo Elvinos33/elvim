@@ -4,10 +4,6 @@
 --- Yank & Paste: Simplified clipboard operations
 --- Copy the entire buffer to the system clipboard
 vim.keymap.set("n", "<leader>yy", "<CMD>%y+<CR>", { desc = "Yank whole file to clipboard" })
---- Paste the last yanked text below the current line
-vim.keymap.set("n", "<leader>p", '"0p', { desc = "Paste last yanked item under line", noremap = true })
---- Paste the last yanked text above the current line
-vim.keymap.set("n", "<leader>P", '"0P', { desc = "Paste last yanked item above line", noremap = true })
 
 --- Remove highlights: Clear search highlights from the current buffer
 vim.keymap.set("n", "<leader>rh", "<CMD>noh<CR>", { desc = "Stop highlighting words" })

@@ -75,6 +75,13 @@ return {
       client.server_capabilities.hoverProvider = false
     end,
   },
+  copilot = {
+    settings = {
+      ["github-enterprise"] = {
+        uri = "https://schibsted.ghe.com"
+      }
+    }
+  },
   astro = {},
   biome = {},
   svelte = {},

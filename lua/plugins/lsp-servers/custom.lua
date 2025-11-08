@@ -5,5 +5,5 @@ return {
     filetypes = { "vcl", "vtc" },
     root_markers = { ".varnishls.toml", ".git" },
     single_file_support = true,
-  }
+  },
 }
