@@ -1,15 +1,23 @@
 return {
   {
-    "kylechui/nvim-surround",
+    "echasnovski/mini.surround",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      mappings = {
+        add = 'sa',
+        delete = 'sd',
+        find = 'sf',
+        find_left = 'sF',
+        highlight = 'sh',
+        replace = 'sr',
+        update_n_lines = 'sn',
+      },
+    },
   },
   {
-    "windwp/nvim-autopairs",
+    "echasnovski/mini.pairs",
     event = "InsertEnter",
-    opts = {
-      disable_filetype = { "codecompanion", "snacks_input" },
-    },
+    opts = {},
   },
   {
     "folke/flash.nvim",
@@ -52,6 +60,7 @@ return {
   },
   {
     "folke/noice.nvim",
+    enabled = false, -- Testing without noice.nvim
     event = "VeryLazy",
     version = "*",
     dependencies = {
@@ -93,44 +102,5 @@ return {
         },
       }
     end,
-  },
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("harpoon"):setup({})
-    end,
-    keys = {
-      {
-        "<leader>a",
-        function()
-          require("harpoon"):list():add()
-        end,
-        desc = "Harpoon add file",
-      },
-      {
-        "<C-e>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
-        end,
-        desc = "Harpoon toggle UI",
-      },
-      {
-        "<C-ø>",
-        function()
-          require("harpoon"):list():prev()
-        end,
-        desc = "Harpoon previous",
-      },
-      {
-        "<C-æ>",
-        function()
-          require("harpoon"):list():next()
-        end,
-        desc = "Harpoon next",
-      },
-    },
   },
 }

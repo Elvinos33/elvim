@@ -2,20 +2,14 @@
 return {
   {
     "folke/sidekick.nvim",
+    init = function()
+      -- Enable Neovim's native inline completions (v0.12+)
+      -- This provides ghost text suggestions WHILE typing
+      vim.lsp.inline_completion.enable()
+    end,
     opts = {
       nes = {
-        enabled = true,
-        debounce = 100,
-        trigger = {
-          events = { "InsertLeave", "TextChanged", "User SidekickNesDone" },
-        },
-        clear = {
-          events = { "TextChangedI", "TextChanged", "BufWritePre", "InsertEnter" },
-          esc = true,
-        },
-        diff = {
-          inline = "words",
-        },
+        enabled = false, -- Disabled: colors don't match theme well
       },
       cli = {
         tools = {
@@ -24,65 +18,44 @@ return {
           },
         },
       },
+      debug = true, -- Enable debug logging for troubleshooting
     },
     keys = {
       {
-        "<tab>",
+        "<C-q>",
         function()
-          -- if there is a next edit, jump to it, otherwise apply it if any
-          if not require("sidekick").nes_jump_or_apply() then
-            return "<Tab>" -- fallback to normal tab
+          -- Accept inline completion from Copilot
+          if vim.lsp.inline_completion.get() then
+            return -- inline completion handled
           end
         end,
         expr = true,
-        desc = "Goto/Apply Next Edit Suggestion",
+        desc = "Accept Inline Completion",
+        mode = { "i" },
       },
       {
         "<c-.>",
-        function() require("sidekick.cli").toggle() end,
-        desc = "Sidekick Toggle",
-        mode = { "n", "t", "i", "x" },
+        function() require("sidekick.cli").focus() end,
+        desc = "Sidekick Switch Focus",
+        mode = { "n", "x", "i", "t" },
       },
       {
         "<leader>aa",
-        function() require("sidekick.cli").toggle() end,
+        function() require("sidekick.cli").toggle({ focus = true }) end,
         desc = "Sidekick Toggle CLI",
-      },
-      {
-        "<leader>as",
-        function() require("sidekick.cli").select() end,
-        -- Or to select only installed tools:
-        -- require("sidekick.cli").select({ filter = { installed = true } })
-        desc = "Select CLI",
-      },
-      {
-        "<leader>at",
-        function() require("sidekick.cli").send({ msg = "{this}" }) end,
-        mode = { "x", "n" },
-        desc = "Send This",
-      },
-      {
-        "<leader>af",
-        function() require("sidekick.cli").send({ msg = "{file}" }) end,
-        desc = "Send File",
-      },
-      {
-        "<leader>av",
-        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
-        mode = { "x" },
-        desc = "Send Visual Selection",
+        mode = { "n", "v" },
       },
       {
         "<leader>ap",
         function() require("sidekick.cli").prompt() end,
-        mode = { "n", "x" },
+        mode = { "n", "v" },
         desc = "Sidekick Select Prompt",
       },
-      -- Example of a keybinding to open Claude directly
       {
         "<leader>ac",
         function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
         desc = "Sidekick Toggle Claude",
+        mode = { "n", "v" },
       },
     },
   }

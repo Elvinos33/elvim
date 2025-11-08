@@ -1,48 +1,69 @@
--- Config for autocomplete and snippets using nvim-cmp and LuaSnip
+-- Config for completion using blink.cmp
 
 return {
-  "hrsh7th/nvim-cmp", -- Autocomplete
+  "saghen/blink.cmp",
   event = "InsertEnter",
   dependencies = {
-    -- LSP Completion
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-path",
-
-    -- Snippets
-    "L3MON4D3/LuaSnip",             -- Plugin for snippets
-    "saadparwaiz1/cmp_luasnip",     -- Use snippets with LSP
-    "rafamadriz/friendly-snippets", -- Extra nice to have snippets
+    "rafamadriz/friendly-snippets",
   },
-  config = function()
-    local cmp = require("cmp")
-    local luasnip = require("luasnip")
-    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
-    require("luasnip.loaders.from_vscode").lazy_load()
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-    cmp.setup({
-      mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        ['<C-Tab>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      }),
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end
+  version = "*",
+  opts = {
+    keymap = {
+      preset = "none",
+      ["<C-space>"] = { "show", "hide_documentation" },
+      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<C-q>"] = {
+        function()         -- Neovim's native inline completions
+          return vim.lsp.inline_completion.get()
+        end,
+        "fallback",
       },
+      ["<CR>"] = { "accept", "fallback" },
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+    },
+    completion = {
+      list = {
+        selection = { preselect = true, auto_insert = true }
+      },
+      accept = {
+        auto_brackets = { enabled = true },
+      },
+      menu = {
+        border = "rounded",
+        winblend = 0,
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        draw = {
+          columns = {
+            { "label", "label_description", gap = 1 },
+            { "kind_icon", "kind" }
+          },
+        }
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+        window = {
+          border = "rounded",
+          winblend = 0,
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
+        },
+      },
+    },
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+    },
+    snippets = {
+      preset = "default"
+    },
+    signature = {
+      enabled = true,
       window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      },
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'treesitter' },
-      })
-    })
-  end
+        border = "rounded",
+        winblend = 0,
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
+      }
+    }
+  },
 }

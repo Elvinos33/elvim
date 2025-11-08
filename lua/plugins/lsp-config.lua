@@ -5,7 +5,6 @@ return {
   dependencies = {
     { "williamboman/mason.nvim",          config = true }, -- For installing and managing LSPs
     { "williamboman/mason-lspconfig.nvim" },               -- To use Mason with native LSP
-    { "hrsh7th/cmp-nvim-lsp" },                            -- For LSP completion
   },
   config = function()
     -- Setup Mason
@@ -24,8 +23,7 @@ return {
       },
     })
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     -- Combine all server configurations
     local servers = require("plugins.lsp-servers.servers")
